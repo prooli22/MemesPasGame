@@ -7,12 +7,27 @@
     tools:context="ca.umontreal.mpg.memepasgame.activities.MainActivity">
 
     <TextView
+        android:id="@+id/MPG_Titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Meme Pas Game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bCreation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Création"/>
+
+    <Button
+        android:id="@+id/bModele"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Modèle"/>
 
 </android.support.constraint.ConstraintLayout>
