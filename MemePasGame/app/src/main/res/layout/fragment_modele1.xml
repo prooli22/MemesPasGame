@@ -1,0 +1,84 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.umontreal.mpg.memepasgame.fragments.Modele1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modèle"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textSize="16pt"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sélectionner un modèle"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:textSize="10pt"
+        />
+
+    <ImageView
+        android:id="@+id/img_brain_meme"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/brain_meme"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="100dp"
+        android:background="#000000"
+        android:padding="2dp"
+        />
+
+    <ImageView
+        android:id="@+id/img_drake_meme"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/drake_meme"
+        android:scaleType="fitXY"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="100dp"
+        android:background="#000000"
+        android:padding="2dp"
+        />
+
+    <ImageView
+        android:id="@+id/img_twitter_meme"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/twitter_meme"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="280dp"
+        android:background="#000000"
+        android:padding="2dp"
+        />
+
+    <ImageView
+        android:id="@+id/img_patrick_meme"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/patrick_meme"
+        android:scaleType="fitXY"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="280dp"
+        android:background="#000000"
+        android:padding="2dp"
+        />
+
+    <Button
+        android:id="@+id/b_ContinuerM1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:text="Continuer"/>
+
+</FrameLayout>
