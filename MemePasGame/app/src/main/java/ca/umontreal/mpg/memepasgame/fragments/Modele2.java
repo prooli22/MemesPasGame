@@ -1,48 +1,41 @@
 package ca.umontreal.mpg.memepasgame.fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import ca.umontreal.mpg.memepasgame.R;
-import ca.umontreal.mpg.memepasgame.activities.Creation;
-import ca.umontreal.mpg.memepasgame.activities.MainActivity;
-import ca.umontreal.mpg.memepasgame.activities.Modele;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Modele1.OnFragmentInteractionListener} interface
+ * {@link Modele2.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Modele1#newInstance} factory method to
+ * Use the {@link Modele2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Modele1 extends Fragment {
+public class Modele2 extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_POSITION = "position";
 
     // TODO: Rename and change types of parameters
-    public int position = 1;
+    public int position = 2;
+
     private OnFragmentInteractionListener mListener;
 
-    public Modele1() {
+    public Modele2() {
         // Required empty public constructor
     }
 
 
-    public static Modele1 newInstance(int position) {
-        Modele1 fragment = new Modele1();
+    // TODO: Rename and change types and number of parameters
+    public static Modele2 newInstance(int position) {
+        Modele2 fragment = new Modele2();
         Bundle args = new Bundle();
         args.putInt(ARG_POSITION, position);
         fragment.setArguments(args);
@@ -60,11 +53,16 @@ public class Modele1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_modele1, container, false);
+        return inflater.inflate(R.layout.fragment_modele2, container, false);
     }
 
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(position);
+        }
+    }
 
     @Override
     public void onAttach(Context context) {
