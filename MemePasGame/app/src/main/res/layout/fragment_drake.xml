@@ -49,57 +49,38 @@
         android:layout_marginLeft="150dp"/>
 
     <ImageView
-        android:id="@+id/img_brain_meme"
+        android:id="@+id/img_drake_meme"
         android:layout_width="300dp"
-        android:layout_height="400dp"
-        android:layout_marginLeft="60dp"
+        android:layout_height="300dp"
+        android:src="@drawable/drake_meme"
+        android:scaleType="fitXY"
+        android:layout_gravity="right"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="100dp"
         android:background="#000000"
         android:padding="2dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/brain_meme" />
+        />
+
     <EditText
-        android:id="@+id/Brain1Input"
+        android:id="@+id/Drake1Input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Texte 1"
-        android:layout_marginTop="130dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginRight="200dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="190dp"
+        android:layout_marginRight="50dp"
         android:inputType="textMultiLine"
         android:maxLines="4" />
     <EditText
-        android:id="@+id/Brain2Input"
+        android:id="@+id/Drake2Input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Texte 2"
-        android:layout_marginTop="230dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginRight="200dp"
-        android:inputType="textMultiLine"
-        android:maxLines="4" />
-    <EditText
-        android:id="@+id/Brain3Input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:maxLines="4"
-        android:hint="Texte 3"
-        android:layout_marginTop="330dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginRight="200dp"
-         />
-    <EditText
-        android:id="@+id/Brain4Input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Texte 4"
-        android:layout_marginTop="430dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginRight="200dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="190dp"
+        android:layout_marginRight="50dp"
         android:inputType="textMultiLine"
         android:maxLines="4" />
 
