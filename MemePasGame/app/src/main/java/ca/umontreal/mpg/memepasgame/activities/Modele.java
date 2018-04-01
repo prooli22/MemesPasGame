@@ -41,6 +41,7 @@ public class Modele extends AppCompatActivity
 
     public static FragmentTags CURRENT_TAG = FragmentTags.M1;
     public static MemeTags MEME_TAG = null;
+
     public static Bitmap bitmapScreenshot;
 
     private static FragmentManager manager;
@@ -57,13 +58,11 @@ public class Modele extends AppCompatActivity
 
     public static void changerFragment(Fragment fragment){
 
-        //handler.post(getFragmentRunnable(fragment));
         FragmentTransaction fragmentTransaction = manager.beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
         fragmentTransaction.replace(R.id.contentframe, fragment, CURRENT_TAG.toString());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        //manager.popBackStack();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -73,7 +72,7 @@ public class Modele extends AppCompatActivity
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
 
-            Modele2.ajouterImage(cameraImage, findViewById(R.id.imageTwitter));
+            Modele2.ajouterImage(cameraImage);
         }
 
         //Est-ce que c'est vraiment la gallerie que l'ont veut ouvrir?
@@ -90,7 +89,7 @@ public class Modele extends AppCompatActivity
 
                 //modifyOrientation(imageGalChosen, imageUri.toString());
                 //imageChosen.setImageBitmap(imageGalChosen);
-                Modele2.ajouterImage(imageGal, findViewById(R.id.imageTwitter));
+                Modele2.ajouterImage(imageGal);
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -124,11 +123,9 @@ public class Modele extends AppCompatActivity
     @Override
     public void onBackPressed() {
 
-        if (manager.getBackStackEntryCount() < 1) {
+        if (manager.getBackStackEntryCount() < 2)
             finish();
-            super.onBackPressed();
-        }
-
+        
         else 
             manager.popBackStack();
     }

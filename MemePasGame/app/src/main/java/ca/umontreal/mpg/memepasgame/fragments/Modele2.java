@@ -50,7 +50,8 @@ public class Modele2 extends Fragment {
     public int position = 2;
     private OnFragmentInteractionListener mListener;
     private RelativeLayout imageLayout;
-
+    private static ImageView imageTwitter;
+    private static Bitmap bmChoosen;
 
 
     public Modele2() {
@@ -82,6 +83,8 @@ public class Modele2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_modele2, container, false);
 
         imageLayout = view.findViewById(R.id.imageLayout);
+        imageTwitter = view.findViewById(R.id.imageTwitter);
+
         ImageView imageModele = view.findViewById(R.id.imageModele);
 
         if(Modele.MEME_TAG == MemeTags.BRAIN) {
@@ -113,15 +116,12 @@ public class Modele2 extends Fragment {
             EditText textTwitter = (EditText) view.findViewById(R.id.textTwitter);
             textTwitter.setVisibility(View.VISIBLE);
 
-            Log.d("TWITTER IF", "ENTER");
-
             ImageButton bCameraM2 = (ImageButton) view.findViewById(R.id.bCameraM2);
             bCameraM2.setVisibility(View.VISIBLE);
             bCameraM2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    Log.d("CAMERA CLICK", "ENTER");
                     Modele.cameraClick(getActivity());
                 }
             });
@@ -132,7 +132,6 @@ public class Modele2 extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    Log.d("GALERIE CLICK", "ENTER");
                     Modele.galerieClick(getActivity());
                 }
             });
@@ -157,6 +156,12 @@ public class Modele2 extends Fragment {
             }
         });
 
+
+        if(imageTwitter != null) {
+            imageTwitter.setVisibility(View.VISIBLE);
+            imageTwitter.setImageBitmap(bmChoosen);
+        }
+
         return view;
     }
 
@@ -170,9 +175,9 @@ public class Modele2 extends Fragment {
     }
 
 
-    public static void ajouterImage(Bitmap bm, View view){
+    public static void ajouterImage(Bitmap bm){
 
-        ImageView imageTwitter = (ImageView) view;
+        bmChoosen = bm;
         imageTwitter.setImageBitmap(bm);
         imageTwitter.setVisibility(View.VISIBLE);
     }
