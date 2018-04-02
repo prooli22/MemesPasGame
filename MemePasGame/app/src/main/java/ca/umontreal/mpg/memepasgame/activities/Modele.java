@@ -1,12 +1,16 @@
 package ca.umontreal.mpg.memepasgame.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,119 +21,33 @@ import ca.umontreal.mpg.memepasgame.fragments.Modele2;
 import ca.umontreal.mpg.memepasgame.helpers.FragmentTags;
 import ca.umontreal.mpg.memepasgame.helpers.MemeTags;
 
-public class Modele extends FragmentActivity
-    implements Modele1.OnFragmentInteractionListener {
+public class Modele extends AppCompatActivity
+    implements Modele1.OnFragmentInteractionListener,
+               Modele2.OnFragmentInteractionListener {
 
 
-    private static FragmentTags CURRENT_TAG = FragmentTags.M1;
-    private static MemeTags MEME_TAG = null;
+    public static FragmentTags CURRENT_TAG = FragmentTags.M1;
+    public static MemeTags MEME_TAG = null;
     private Handler handler;
+    private static FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_modele1);
+        setContentView(R.layout.activity_modele);
 
-        // Check that the activity is using the layout version with
-        // the fragment_container FrameLayout
-        if (findViewById(R.id.contentframe) != null) {
+        handler = new Handler();
+        manager = getSupportFragmentManager();
 
-            if (savedInstanceState != null)
-                return;
+        //handler.post(getFragmentRunnable(new Modele1()));
 
-            Modele1 firstFragment = new Modele1();
-            firstFragment.setArguments(getIntent().getExtras());
-
-            // Add the fragment to the FrameLayout
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentframe, firstFragment).commit();
-        }
-
-        loadModele1Elements();
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        fragmentTransaction.replace(R.id.contentframe, Modele1.newInstance(1), CURRENT_TAG.toString());
+        fragmentTransaction.commit();
+        manager.popBackStack();
     }
 
-    private void loadModele1Elements(){
-
-        final TextView modele_select = (TextView) findViewById(R.id.modele_select);
-
-        final ImageButton brain_meme = (ImageButton) findViewById(R.id.img_brain_meme);
-        brain_meme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(MEME_TAG == MemeTags.BRAIN)
-                    MEME_TAG = null;
-
-                else{
-                    MEME_TAG = MemeTags.BRAIN;
-                    modele_select.setText(MEME_TAG.toString());
-                }
-            }
-        });
-
-        final ImageButton drake_meme = (ImageButton) findViewById(R.id.img_drake_meme);
-        drake_meme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(MEME_TAG == MemeTags.DRAKE)
-                    MEME_TAG = null;
-
-                else {
-                    MEME_TAG = MemeTags.DRAKE;
-                    modele_select.setText(MEME_TAG.toString());
-                }
-            }
-        });
-
-        final ImageButton twitter_meme = (ImageButton) findViewById(R.id.img_twitter_meme);
-        twitter_meme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(MEME_TAG == MemeTags.TWITTER)
-                    MEME_TAG = null;
-
-                else {
-                    MEME_TAG = MemeTags.TWITTER;
-                    modele_select.setText(MEME_TAG.toString());
-                }
-            }
-        });
-
-        final ImageButton patrick_meme = (ImageButton) findViewById(R.id.img_patrick_meme);
-        patrick_meme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(MEME_TAG == MemeTags.PATRICK)
-                    MEME_TAG = null;
-
-                else {
-                    MEME_TAG = MemeTags.PATRICK;
-                    modele_select.setText(MEME_TAG.toString());
-                }
-            }
-        });
-
-
-        final Button b_ContinuerM1 = (Button) findViewById(R.id.b_ContinuerM1);
-        b_ContinuerM1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Valider qu'un choix à été fait.
-                if(MEME_TAG == null)
-                    Toast.makeText(getApplicationContext(), "Vous devez sélectionner un modèle avant de continuer", Toast.LENGTH_SHORT).show();
-
-                else {
-                    // Call fragement to Modele2
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                    fragmentTransaction.replace(R.id.contentframe, new Modele2(), CURRENT_TAG.toString());
-                    fragmentTransaction.addToBackStack(CURRENT_TAG.toString());
-                    fragmentTransaction.commitAllowingStateLoss();
-
-                    CURRENT_TAG = FragmentTags.M2;
-                }
-            }
-        });
-    }
 
     private Runnable getFragmentRunnable(final Fragment fragment) {
         Runnable changeFragmentThread = new Runnable() {
@@ -142,8 +60,32 @@ public class Modele extends FragmentActivity
                 fragmentTransaction.commitAllowingStateLoss();
             }
         };
-
+        
         return changeFragmentThread;
+    }
+
+    public static void changerFragment(Fragment fragment){
+
+
+        //handler.post(getFragmentRunnable(fragment));
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        fragmentTransaction.replace(R.id.contentframe, fragment, CURRENT_TAG.toString());
+        //fragmentTransaction.addToBackStack(CURRENT_TAG.toString());
+        fragmentTransaction.commit();
+        manager.popBackStack();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        int fragments = getSupportFragmentManager().getBackStackEntryCount();
+        if (fragments == 0) {
+            finish();
+            return;
+        }
+
+        super.onBackPressed();
     }
 
     @Override

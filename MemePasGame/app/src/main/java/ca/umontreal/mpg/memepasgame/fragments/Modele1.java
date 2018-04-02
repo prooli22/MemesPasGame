@@ -12,12 +12,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ca.umontreal.mpg.memepasgame.R;
 import ca.umontreal.mpg.memepasgame.activities.Creation;
 import ca.umontreal.mpg.memepasgame.activities.MainActivity;
 import ca.umontreal.mpg.memepasgame.activities.Modele;
+import ca.umontreal.mpg.memepasgame.helpers.FragmentTags;
+import ca.umontreal.mpg.memepasgame.helpers.MemeTags;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,7 +65,83 @@ public class Modele1 extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_modele1, container, false);
+        final View view =  inflater.inflate(R.layout.fragment_modele1, container, false);
+
+        final TextView modele_select = (TextView) view.findViewById(R.id.modele_select);
+
+        final ImageButton brain_meme = (ImageButton) view.findViewById(R.id.img_brain_meme);
+        brain_meme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Modele.MEME_TAG == MemeTags.BRAIN)
+                    Modele.MEME_TAG = null;
+
+                else{
+                    Modele.MEME_TAG = MemeTags.BRAIN;
+                    modele_select.setText(Modele.MEME_TAG.toString());
+                }
+            }
+        });
+
+        final ImageButton drake_meme = (ImageButton) view.findViewById(R.id.img_drake_meme);
+        drake_meme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Modele.MEME_TAG == MemeTags.DRAKE)
+                    Modele.MEME_TAG = null;
+
+                else {
+                    Modele.MEME_TAG = MemeTags.DRAKE;
+                    modele_select.setText(Modele.MEME_TAG.toString());
+                }
+            }
+        });
+
+        final ImageButton twitter_meme = (ImageButton) view.findViewById(R.id.img_twitter_meme);
+        twitter_meme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Modele.MEME_TAG == MemeTags.TWITTER)
+                    Modele.MEME_TAG = null;
+
+                else {
+                    Modele.MEME_TAG = MemeTags.TWITTER;
+                    modele_select.setText(Modele.MEME_TAG.toString());
+                }
+            }
+        });
+
+        final ImageButton patrick_meme = (ImageButton) view.findViewById(R.id.img_patrick_meme);
+        patrick_meme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Modele.MEME_TAG == MemeTags.PATRICK)
+                    Modele.MEME_TAG = null;
+
+                else {
+                    Modele.MEME_TAG = MemeTags.PATRICK;
+                    modele_select.setText(Modele.MEME_TAG.toString());
+                }
+            }
+        });
+
+
+        final Button b_ContinuerM1 = (Button) view.findViewById(R.id.b_ContinuerM1);
+        b_ContinuerM1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Valider qu'un choix à été fait.
+                if(Modele.MEME_TAG == null)
+                    Toast.makeText(getContext(), "Vous devez sélectionner un modèle avant de continuer", Toast.LENGTH_SHORT).show();
+
+                else {
+                    Modele.changerFragment(Modele2.newInstance(2));
+                    Modele.CURRENT_TAG = FragmentTags.M2;
+                }
+            }
+        });
+
+        return view;
     }
 
 
