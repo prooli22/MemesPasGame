@@ -1,7 +1,12 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
     tools:context="ca.umontreal.mpg.memepasgame.fragments.Modele1">
 
     <TextView
@@ -18,91 +23,73 @@
         android:layout_height="wrap_content"
         android:text="Créé votre meme"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
         android:textSize="10pt"
         />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/layoutt">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:id="@+id/TexteImageHaut"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageModele"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:id="@+id/TexteImageBas"
+            />
+
+
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/TexteBas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:hint="Texte Bas">
+
+
+    <EditText
+        android:id="@+id/TexteHaut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:hint="Texte Haut" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ajouter le Texte"
+        android:onClick="ajouterTexte"
+        />
+
 
 
     <Button
         android:id="@+id/b_ContinuerM1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
+        android:layout_gravity="bottom|right"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="15dp"
-        android:text="Continuer"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Modèle sélectionné : "
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="20dp"/>
-
-    <TextView
-        android:id="@+id/modele_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="150dp"/>
-
-    <ImageView
-        android:id="@+id/img_brain_meme"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="100dp"
-        android:background="#000000"
-        android:padding="2dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/brain_meme" />
-    <EditText
-        android:id="@+id/Brain1Input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Texte 1"
-        android:layout_marginTop="130dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginRight="200dp"
-        android:inputType="textMultiLine"
-        android:maxLines="4" />
-    <EditText
-        android:id="@+id/Brain2Input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Texte 2"
-        android:layout_marginTop="230dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginRight="200dp"
-        android:inputType="textMultiLine"
-        android:maxLines="4" />
-    <EditText
-        android:id="@+id/Brain3Input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:maxLines="4"
-        android:hint="Texte 3"
-        android:layout_marginTop="330dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginRight="200dp"
-         />
-    <EditText
-        android:id="@+id/Brain4Input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Texte 4"
-        android:layout_marginTop="430dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginRight="200dp"
-        android:inputType="textMultiLine"
-        android:maxLines="4" />
+        android:text="Continuer" />
 
 
 
-</FrameLayout>
+
+
+</LinearLayout>

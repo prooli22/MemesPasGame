@@ -1,12 +1,16 @@
 package ca.umontreal.mpg.memepasgame.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import ca.umontreal.mpg.memepasgame.R;
 
@@ -18,7 +22,15 @@ import ca.umontreal.mpg.memepasgame.R;
  * Use the {@link Modele2#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+
 public class Modele2 extends Fragment {
+    TextView TexteHaut;
+    TextView TexteBas;
+    EditText TexteImageBas;
+    EditText TexteImageHaut;
+    ImageView imageView;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_POSITION = "position";
@@ -48,6 +60,11 @@ public class Modele2 extends Fragment {
         if (getArguments() != null) {
             position = getArguments().getInt(ARG_POSITION);
         }
+        TexteHaut= (TextView) findViewById(R.id.TexteHaut);
+        TexteBas= (TextView) findViewById(R.id.TexteBas);
+        TexteImageBas= (EditText) findViewById(R.id.TexteImageBas);
+        TexteImageHaut=(EditText) findViewById(R.id.TexteImageHaut);
+        imageView=(ImageView) findViewById(R.id.imageModele);
     }
 
     @Override
@@ -79,6 +96,11 @@ public class Modele2 extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void ajouterTexte(View view){
+        TexteImageHaut.setText(TexteHaut.getText().toString());
+        TexteImageBas.setText(TexteBas.getText().toString());
     }
 
     /**
