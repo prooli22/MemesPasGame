@@ -1,12 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
     tools:context="ca.umontreal.mpg.memepasgame.fragments.Modele1">
 
     <TextView
@@ -15,81 +10,52 @@
         android:text="Modèle"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:textSize="16pt"
-        />
+        android:textSize="16pt" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Créé votre meme"
+        android:text="Modifier le modèle"
         android:layout_gravity="center_horizontal"
-        android:textSize="10pt"
-        />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/layoutt">
+        android:layout_marginTop="60dp"
+        android:textSize="10pt" />
 
-        <TextView
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_marginTop="100dp">
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/imageLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10dp"
-            android:layout_centerHorizontal="true"
-            android:textAlignment="center"
-            android:id="@+id/TexteImageHaut"
-            />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageModele"
-            />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10dp"
-            android:layout_centerHorizontal="true"
-            android:textAlignment="center"
-            android:id="@+id/TexteImageBas"
-            />
+            <ImageView
+                android:id="@+id/imageModele"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:layout_marginHorizontal="20dp"/>
 
-
-    </RelativeLayout>
-
-
-    <EditText
-        android:id="@+id/TexteBas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="8"
-        android:hint="Texte Bas">
-
-
-    <EditText
-        android:id="@+id/TexteHaut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="8"
-        android:hint="Texte Haut" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ajouter le Texte"
-        android:onClick="ajouterTexte"
-        />
-
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
 
     <Button
-        android:id="@+id/b_ContinuerM1"
+        android:id="@+id/bAjouter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="70dp"
+        android:text="Ajouter au modèle" />
+
+    <Button
+        android:id="@+id/b_ContinuerM2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="right|bottom"
         android:layout_marginRight="20dp"
-        android:text="Continuer" />
+        android:layout_marginBottom="15dp"
+        android:text="Continuer"/>
 
-
-
-
-
-</LinearLayout>
+</FrameLayout>

@@ -39,13 +39,7 @@ public class Modele extends AppCompatActivity
         handler = new Handler();
         manager = getSupportFragmentManager();
 
-        //handler.post(getFragmentRunnable(new Modele1()));
-
-        FragmentTransaction fragmentTransaction = manager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        fragmentTransaction.replace(R.id.contentframe, Modele1.newInstance(1), CURRENT_TAG.toString());
-        fragmentTransaction.commit();
-        manager.popBackStack();
+        changerFragment(Modele1.newInstance(1));
     }
 
 
@@ -53,19 +47,18 @@ public class Modele extends AppCompatActivity
         Runnable changeFragmentThread = new Runnable() {
             @Override
             public void run() {;
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = manager.beginTransaction();
                 fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 fragmentTransaction.replace(R.id.contentframe, fragment, CURRENT_TAG.toString());
-                fragmentTransaction.addToBackStack(CURRENT_TAG.toString());
-                fragmentTransaction.commitAllowingStateLoss();
+                //fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         };
-        
+
         return changeFragmentThread;
     }
 
     public static void changerFragment(Fragment fragment){
-
 
         //handler.post(getFragmentRunnable(fragment));
         FragmentTransaction fragmentTransaction = manager.beginTransaction();
@@ -89,8 +82,9 @@ public class Modele extends AppCompatActivity
     }
 
     @Override
-    public void onFragmentInteraction(int position) {
+    public void onFragmentInteraction(final Fragment fragment) {
 
+        //handler.post(getFragmentRunnable(fragment));
     }
 
 }
