@@ -7,10 +7,11 @@
     android:layout_height="match_parent"
     tools:context="ca.umontreal.mpg.memepasgame.activities.Modele">
 
-    <FrameLayout
+    <FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/contentframe"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+<<<<<<< HEAD
 
         <fragment
             android:id="@+id/modeleLayoutMain"
@@ -18,6 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"></fragment>
 
+=======
+>>>>>>> d355982c4e6bfe585d3f43e6852c35ebf86a467d
     </FrameLayout>
 
 </android.support.v7.widget.ContentFrameLayout>

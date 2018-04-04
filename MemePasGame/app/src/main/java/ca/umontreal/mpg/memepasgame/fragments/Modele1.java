@@ -1,21 +1,33 @@
 package ca.umontreal.mpg.memepasgame.fragments;
 
+<<<<<<< HEAD
 import android.app.FragmentManager;
+=======
+import android.app.Activity;
+>>>>>>> d355982c4e6bfe585d3f43e6852c35ebf86a467d
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import ca.umontreal.mpg.memepasgame.R;
 import ca.umontreal.mpg.memepasgame.activities.Creation;
 import ca.umontreal.mpg.memepasgame.activities.MainActivity;
 import ca.umontreal.mpg.memepasgame.activities.Modele;
+<<<<<<< HEAD
+=======
+import ca.umontreal.mpg.memepasgame.helpers.FragmentTags;
+import ca.umontreal.mpg.memepasgame.helpers.MemeTags;
+>>>>>>> d355982c4e6bfe585d3f43e6852c35ebf86a467d
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,9 +40,10 @@ import ca.umontreal.mpg.memepasgame.activities.Modele;
 public class Modele1 extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    public static final String ARG_POSITION = "position";
 
     // TODO: Rename and change types of parameters
-
+    public int position = 1;
     private OnFragmentInteractionListener mListener;
 
     public Modele1() {
@@ -38,9 +51,10 @@ public class Modele1 extends Fragment {
     }
 
 
-    public static Modele1 newInstance() {
+    public static Modele1 newInstance(int position) {
         Modele1 fragment = new Modele1();
         Bundle args = new Bundle();
+        args.putInt(ARG_POSITION, position);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,40 +63,98 @@ public class Modele1 extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            //mParam1 = getArguments().getString(ARG_PARAM1);
-            //mParam2 = getArguments().getString(ARG_PARAM2);
+            position = getArguments().getInt(ARG_POSITION);
         }
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_modele1, container, false);
-        final Context context = view.getContext();
 
-        ImageView brain_meme = view.findViewById(R.id.img_brain_meme);
+        final TextView modele_select = (TextView) view.findViewById(R.id.modele_select);
 
-        Button b_ContinuerM1 = view.findViewById(R.id.b_ContinuerM1);
-        b_ContinuerM1.setOnClickListener(new View.OnClickListener() {
+        final ImageButton brain_meme = (ImageButton) view.findViewById(R.id.img_brain_meme);
+        brain_meme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Call fragement to Modele2
+                if(Modele.MEME_TAG == MemeTags.BRAIN)
+                    Modele.MEME_TAG = null;
+
+                else{
+                    Modele.MEME_TAG = MemeTags.BRAIN;
+                    modele_select.setText(Modele.MEME_TAG.toString());
+                }
             }
         });
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_modele1, container, false);
+        final ImageButton drake_meme = (ImageButton) view.findViewById(R.id.img_drake_meme);
+        drake_meme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Modele.MEME_TAG == MemeTags.DRAKE)
+                    Modele.MEME_TAG = null;
+
+<<<<<<< HEAD
+        Button b_ContinuerM1 = view.findViewById(R.id.b_ContinuerM1);
+=======
+                else {
+                    Modele.MEME_TAG = MemeTags.DRAKE;
+                    modele_select.setText(Modele.MEME_TAG.toString());
+                }
+            }
+        });
+
+        final ImageButton twitter_meme = (ImageButton) view.findViewById(R.id.img_twitter_meme);
+        twitter_meme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Modele.MEME_TAG == MemeTags.TWITTER)
+                    Modele.MEME_TAG = null;
+
+                else {
+                    Modele.MEME_TAG = MemeTags.TWITTER;
+                    modele_select.setText(Modele.MEME_TAG.toString());
+                }
+            }
+        });
+
+        final ImageButton patrick_meme = (ImageButton) view.findViewById(R.id.img_patrick_meme);
+        patrick_meme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Modele.MEME_TAG == MemeTags.PATRICK)
+                    Modele.MEME_TAG = null;
+
+                else {
+                    Modele.MEME_TAG = MemeTags.PATRICK;
+                    modele_select.setText(Modele.MEME_TAG.toString());
+                }
+            }
+        });
+
+
+        final Button b_ContinuerM1 = (Button) view.findViewById(R.id.b_ContinuerM1);
+>>>>>>> d355982c4e6bfe585d3f43e6852c35ebf86a467d
+        b_ContinuerM1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Valider qu'un choix à été fait.
+                if(Modele.MEME_TAG == null)
+                    Toast.makeText(getContext(), "Vous devez sélectionner un modèle avant de continuer", Toast.LENGTH_SHORT).show();
+
+                else {
+                    Modele.changerFragment(Modele2.newInstance(2));
+                    Modele.CURRENT_TAG = FragmentTags.M2;
+                }
+            }
+        });
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -113,7 +185,7 @@ public class Modele1 extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(final Fragment fragment);
     }
 
 }
