@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.umontreal.mpg.memepasgame">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,12 +13,14 @@
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+                <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activities.Creation" />
-        <activity android:name=".activities.Modele"></activity>
+        <activity android:name=".activities.Modele">
+        </activity>
     </application>
 
 </manifest>
