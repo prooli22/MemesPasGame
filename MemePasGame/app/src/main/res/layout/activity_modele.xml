@@ -11,16 +11,7 @@
         android:id="@+id/contentframe"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-<<<<<<< HEAD
 
-        <fragment
-            android:id="@+id/modeleLayoutMain"
-            class="ca.umontreal.mpg.memepasgame.fragments.Modele1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></fragment>
-
-=======
->>>>>>> d355982c4e6bfe585d3f43e6852c35ebf86a467d
     </FrameLayout>
 
 </android.support.v7.widget.ContentFrameLayout>

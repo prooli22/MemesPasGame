@@ -89,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
         //Est-ce que c'est vraiment la caméra que l'on veut ouvrir?
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+
+
+
             imgImageChosen.setImageBitmap(cameraImage);
         }
 
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 inputStream = getContentResolver().openInputStream(imageUri);
                 Bitmap imageGalChosen = BitmapFactory.decodeStream(inputStream);
 
-
+                //modifyOrientation(imageGalChosen, imageUri.toString());
                 imgImageChosen.setImageBitmap(imageGalChosen);
 
             } catch (FileNotFoundException e) {

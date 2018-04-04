@@ -1,10 +1,8 @@
 package ca.umontreal.mpg.memepasgame.fragments;
 
-<<<<<<< HEAD
+
 import android.app.FragmentManager;
-=======
-import android.app.Activity;
->>>>>>> d355982c4e6bfe585d3f43e6852c35ebf86a467d
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -23,11 +21,10 @@ import ca.umontreal.mpg.memepasgame.R;
 import ca.umontreal.mpg.memepasgame.activities.Creation;
 import ca.umontreal.mpg.memepasgame.activities.MainActivity;
 import ca.umontreal.mpg.memepasgame.activities.Modele;
-<<<<<<< HEAD
-=======
+
 import ca.umontreal.mpg.memepasgame.helpers.FragmentTags;
 import ca.umontreal.mpg.memepasgame.helpers.MemeTags;
->>>>>>> d355982c4e6bfe585d3f43e6852c35ebf86a467d
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,9 +94,6 @@ public class Modele1 extends Fragment {
                 if(Modele.MEME_TAG == MemeTags.DRAKE)
                     Modele.MEME_TAG = null;
 
-<<<<<<< HEAD
-        Button b_ContinuerM1 = view.findViewById(R.id.b_ContinuerM1);
-=======
                 else {
                     Modele.MEME_TAG = MemeTags.DRAKE;
                     modele_select.setText(Modele.MEME_TAG.toString());
@@ -137,7 +131,6 @@ public class Modele1 extends Fragment {
 
 
         final Button b_ContinuerM1 = (Button) view.findViewById(R.id.b_ContinuerM1);
->>>>>>> d355982c4e6bfe585d3f43e6852c35ebf86a467d
         b_ContinuerM1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

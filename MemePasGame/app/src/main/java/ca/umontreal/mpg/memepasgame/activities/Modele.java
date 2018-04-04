@@ -1,30 +1,19 @@
 package ca.umontreal.mpg.memepasgame.activities;
 
-<<<<<<< HEAD
+
 import android.content.Intent;
-=======
-import android.content.Context;
+
 import android.os.Bundle;
 import android.os.Handler;
->>>>>>> d355982c4e6bfe585d3f43e6852c35ebf86a467d
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-<<<<<<< HEAD
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.widget.Button;
-=======
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
->>>>>>> d355982c4e6bfe585d3f43e6852c35ebf86a467d
+
+
+
+
 
 import ca.umontreal.mpg.memepasgame.R;
 import ca.umontreal.mpg.memepasgame.fragments.Modele1;
