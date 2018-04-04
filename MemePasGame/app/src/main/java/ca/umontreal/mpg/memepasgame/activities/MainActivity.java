@@ -1,16 +1,20 @@
 package ca.umontreal.mpg.memepasgame.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Gallery;
@@ -20,8 +24,12 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import ca.umontreal.mpg.memepasgame.R;
 import ca.umontreal.mpg.memepasgame.fragments.CameraFragment;
@@ -29,9 +37,9 @@ import ca.umontreal.mpg.memepasgame.fragments.CameraFragment;
 public class MainActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1888;
     private static final int IMAGE_GALLERY_REQUEST = 1;
-    private ImageView imageView;
+    private static final int IMAGE_SAVED_REQUEST = 8;
     private static final int SELECTED_PICTURE = 1;
-    private ImageView imgImageChosen;
+    private ImageView imageChosen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Avoir accès à l'image View
-        imgImageChosen = (ImageView) findViewById(R.id.imageChosen);
+        imageChosen = (ImageView) findViewById(R.id.imageChosen);
 
         Button bCreation = findViewById(R.id.bCreation);
         bCreation.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +67,79 @@ public class MainActivity extends AppCompatActivity {
 
         Button bCamera = findViewById(R.id.bCamera);
         Button bGallerie = findViewById(R.id.bGallerie);
+
+
+
+        Button bEnregistrer = findViewById(R.id.bEnregistrer);
+        bEnregistrer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String nameFolder = "/MPG";
+                String nameFile = "imgMPG";
+
+                imageChosen.setDrawingCacheEnabled(true);
+                imageChosen.buildDrawingCache();
+
+                Bitmap imageToSaved = Bitmap.createBitmap(imageChosen.getDrawingCache());
+
+                String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + nameFolder;
+                String currentDate = getCurrentDate();
+                File dir = new File(filePath);
+
+                if(!dir.exists()){
+                    dir.mkdirs();
+                }
+
+                File file = new File(dir, nameFile + currentDate + ".jpeg");
+
+                try{
+                    FileOutputStream fOut = new FileOutputStream(file);
+                    imageToSaved.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
+                    fOut.flush();
+                    fOut.close();
+                    testCreatedFile(file);
+                    Toast.makeText(getApplicationContext(), "picture saved", Toast.LENGTH_SHORT).show();
+                }
+                catch (FileNotFoundException e ){
+                    Toast.makeText(getApplicationContext(), "picture failed caca", Toast.LENGTH_SHORT).show();
+                }
+                catch(IOException e){
+                    Toast.makeText(getApplicationContext(), "picture failed", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+
+        });
+
+    }
+
+    private void testCreatedFile(File file){
+        MediaScannerConnection.scanFile(getApplicationContext(),
+                new String[]{file.toString()}, null,
+                new MediaScannerConnection.OnScanCompletedListener() {
+                    @Override
+                    public void onScanCompleted(String path, Uri uri) {
+                        Log.e("External Storage ", "Scanned : " + path);
+                        Log.e("External Storage ", "uri : " + uri);
+                    }
+                });
+
+    }
+
+
+
+    private static String getCurrentDate(){
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        return df.format(c.getTime());
+    }
+
+    private static void scanFile(Context context, Uri imageUri){
+        Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        scanIntent.setData(imageUri);
+        context.sendBroadcast(scanIntent);
 
     }
 
@@ -90,9 +171,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
 
-
-
-            imgImageChosen.setImageBitmap(cameraImage);
+            imageChosen.setImageBitmap(cameraImage);
         }
 
         //Est-ce que c'est vraiment la gallerie que l'ont veut ouvrir?
@@ -108,13 +187,37 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap imageGalChosen = BitmapFactory.decodeStream(inputStream);
 
                 //modifyOrientation(imageGalChosen, imageUri.toString());
-                imgImageChosen.setImageBitmap(imageGalChosen);
+                imageChosen.setImageBitmap(imageGalChosen);
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 //Toast.makeText("Impossible d'ouvrir cette photo");
             }
+
         }
+    }
+
+    public String saveImageFile(Bitmap bitmap) {
+        FileOutputStream out = null;
+        String filename = getFilename();
+        try {
+            out = new FileOutputStream(filename);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return filename;
+    }
+
+    private String getFilename() {
+        File file = new File(Environment.getExternalStorageDirectory()
+                .getPath(), "TestFolder");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        String uriSting = (file.getAbsolutePath() + "/"
+                + System.currentTimeMillis() + ".jpg");
+        return uriSting;
     }
 
     public static Bitmap modifyOrientation(Bitmap bitmap, String image_absolute_path) throws IOException {
