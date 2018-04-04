@@ -178,7 +178,7 @@ public class Modele1 extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(final Fragment fragment);
+        void onFragmentInteraction(int position);
     }
 
 }

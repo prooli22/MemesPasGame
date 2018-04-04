@@ -13,10 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Gallery;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,7 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import ca.umontreal.mpg.memepasgame.R;
-import ca.umontreal.mpg.memepasgame.fragments.CameraFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1888;

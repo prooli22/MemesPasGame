@@ -6,7 +6,8 @@ package ca.umontreal.mpg.memepasgame.helpers;
 
 public enum FragmentTags {
     M1("modele1"),
-    M2("modele2");
+    M2("modele2"),
+    APERCU("apercu");
 
     private String tag;
 

@@ -35,6 +35,7 @@ import ca.umontreal.mpg.memepasgame.R;
 import ca.umontreal.mpg.memepasgame.activities.Modele;
 import ca.umontreal.mpg.memepasgame.helpers.FragmentTags;
 import ca.umontreal.mpg.memepasgame.helpers.MemeTags;
+import ca.umontreal.mpg.memepasgame.helpers.MemeText;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,8 +56,7 @@ public class Modele2 extends Fragment {
     // TODO: Rename and change types of parameters
     public int position = 2;
     private OnFragmentInteractionListener mListener;
-    private ImageView imageModele;
-    private ArrayList<EditText> tabEditText;
+    private ArrayList<MemeText> tabMemeText;
 
     public Modele2() {
         // Required empty public constructor
@@ -86,25 +86,61 @@ public class Modele2 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_modele2, container, false);
 
-        imageModele = view.findViewById(R.id.imageModele);
-        tabEditText = new ArrayList<>();
+        Modele.imageModele = view.findViewById(R.id.imageModele);
+        tabMemeText = new ArrayList<>();
 
         if(Modele.MEME_TAG == MemeTags.BRAIN) {
-            imageModele.setImageResource(R.drawable.brain_meme);
-            ajouterTexte(view, 4);
+            Modele.imageModele.setImageResource(R.drawable.brain_meme);
+            ajouterChampsTexts(view, 4, false);
+
+            tabMemeText.get(0).setXpos(130);
+            tabMemeText.get(0).setYpos(160);
+            tabMemeText.get(0).setTextSize(60);
+
+            tabMemeText.get(1).setXpos(130);
+            tabMemeText.get(1).setYpos(160);
+            tabMemeText.get(1).setTextSize(60);
+
+            tabMemeText.get(2).setXpos(130);
+            tabMemeText.get(2).setYpos(160);
+            tabMemeText.get(2).setTextSize(60);
+
+            tabMemeText.get(3).setXpos(130);
+            tabMemeText.get(3).setYpos(160);
+            tabMemeText.get(3).setTextSize(60);
         }
         else if(Modele.MEME_TAG == MemeTags.DRAKE) {
-            imageModele.setImageResource(R.drawable.drake_meme);
-            ajouterTexte(view, 2);
+            Modele.imageModele.setImageResource(R.drawable.drake_meme);
+            ajouterChampsTexts(view, 2, false);
+
+            tabMemeText.get(0).setXpos(130);
+            tabMemeText.get(0).setYpos(160);
+            tabMemeText.get(0).setTextSize(60);
+
+            tabMemeText.get(1).setXpos(130);
+            tabMemeText.get(1).setYpos(160);
+            tabMemeText.get(1).setTextSize(60);
         }
 
         else if(Modele.MEME_TAG == MemeTags.TWITTER) {
-            imageModele.setImageResource(R.drawable.twitter_meme_template);
-            ajouterTexte(view, 1);
+            Modele.imageModele.setImageResource(R.drawable.twitter_meme_template);
+            ajouterChampsTexts(view, 1, true);
+
+            tabMemeText.get(0).setXpos(130);
+            tabMemeText.get(0).setYpos(160);
+            tabMemeText.get(0).setTextSize(60);
         }
         else if(Modele.MEME_TAG == MemeTags.PATRICK) {
-            imageModele.setImageResource(R.drawable.patrick_meme);
-            ajouterTexte(view, 1);
+            Modele.imageModele.setImageResource(R.drawable.patrick_meme);
+            ajouterChampsTexts(view, 1, false);
+
+            tabMemeText.get(0).setXpos(130);
+            tabMemeText.get(0).setYpos(160);
+            tabMemeText.get(0).setTextSize(60);
+        }
+
+        for (MemeText mt: tabMemeText) {
+            ajouterTextImage(mt.getEditText().getText().toString(), mt.getXpos(), mt.getYpos(), mt.getTextSize());
         }
 
         Button bAjouter = (Button) view.findViewById(R.id.bAjouter);
@@ -112,19 +148,18 @@ public class Modele2 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                imageModele.setDrawingCacheEnabled(true);
-                imageModele.buildDrawingCache();
-                Bitmap bitmap = Bitmap.createBitmap(imageModele.getDrawingCache());
+                for (MemeText mt: tabMemeText) {
+                    ajouterTextImage(mt.getEditText().getText().toString(), mt.getXpos(), mt.getYpos(), mt.getTextSize());
+                }
+            }
+        });
 
-                Canvas canvas = new Canvas(bitmap);
-                Paint paint = new Paint();
-                paint.setColor(Color.BLACK);
-                paint.setTextSize(60);
-                Typeface arial = Typeface.createFromAsset(getContext().getAssets(), "fonts/Arial.ttf");
-                paint.setTypeface(arial);
-                canvas.drawText(tabEditText.get(0).getText().toString(), 130, 160, paint);
-
-                imageModele.setImageBitmap(bitmap);
+        Button bContinuer = (Button) view.findViewById(R.id.b_ContinuerM2);
+        bContinuer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Modele.changerFragment(Apercu.newInstance(3));
+                Modele.CURRENT_TAG = FragmentTags.APERCU;
             }
         });
 
@@ -148,15 +183,13 @@ public class Modele2 extends Fragment {
         mListener = null;
     }
 
-    public void ajouterTexte(View view, int nbTexte){
+    public void ajouterChampsTexts(View view, int nbTexte, boolean ajouterBoutons){
 
-        ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.imageLayout);
-        ConstraintSet c = new ConstraintSet();
-
-        ConstraintLayout.LayoutParams p = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.imageLayout);
+        RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         p.setMargins(20, 0, 20, 0);
 
-        View v = imageModele;
+        View v = Modele.imageModele;
 
         for(int i = 0; i < nbTexte; i++) {
 
@@ -165,33 +198,73 @@ public class Modele2 extends Fragment {
             et.setText("Texte " + (i + 1));
             et.setId(i + 1);
 
+            p.addRule(RelativeLayout.BELOW, v.getId());
+
             layout.addView(et);
-            c.clone(layout);
 
-            if(v == imageModele)
-                c.connect(et.getId(), ConstraintSet.TOP, v.getId(), ConstraintSet.BOTTOM, 10);
-            else
-                c.connect(et.getId(), ConstraintSet.TOP, v.getId(), ConstraintSet.BOTTOM, 0);
-
-            tabEditText.add(et);
+            tabMemeText.add(new MemeText(et));
             v = et;
         }
 
-        c.applyTo(layout);
+        if(ajouterBoutons) {
+
+            Button bCamera = new Button(getContext());
+            bCamera.setText("Caméra");
+            bCamera.setId(R.id.bCamera);
+            bCamera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+            Button bGallerie = new Button(getContext());
+            bGallerie.setText("Gallerie");
+            bGallerie.setId(R.id.bGallerie);
+            bGallerie.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+            RelativeLayout.LayoutParams pCam = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            pCam.setMargins(20, 0, 0, 0);
+            pCam.addRule(RelativeLayout.BELOW, v.getId());
+            pCam.addRule(RelativeLayout.LEFT_OF, bGallerie.getId());
+            bCamera.setLayoutParams(pCam);
+            layout.addView(bCamera);
+
+            RelativeLayout.LayoutParams pGal = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            pGal.setMargins(0, 0, 0, 20);
+            pGal.addRule(RelativeLayout.BELOW, v.getId());
+            pGal.addRule(RelativeLayout.RIGHT_OF, bCamera.getId());
+            bCamera.setLayoutParams(pGal);
+            layout.addView(bCamera);
+        }
+
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+    public void ajouterTextImage(String text, int xpos, int ypos, int textSize){
+
+        Modele.imageModele.setDrawingCacheEnabled(true);
+        Modele.imageModele.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(Modele.imageModele.getDrawingCache());
+
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = new Paint();
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(textSize);
+        Typeface arial = Typeface.createFromAsset(getContext().getAssets(), "fonts/Arial.ttf");
+        paint.setTypeface(arial);
+        canvas.drawText(text, xpos, ypos, paint);
+
+        Modele.imageModele.setImageBitmap(bitmap);
+    }
+
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(final Fragment fragment);
+        void onFragmentInteraction(int position);
     }
 }

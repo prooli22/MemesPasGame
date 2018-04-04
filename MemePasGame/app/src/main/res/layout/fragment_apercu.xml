@@ -1,0 +1,40 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.umontreal.mpg.memepasgame.fragments.Apercu">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aperçu"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textSize="16pt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enregistrer l'aperçu"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:textSize="10pt" />
+
+    <ImageView
+        android:id="@+id/imageApercu"
+        android:layout_width="wrap_content"
+        android:layout_height="340dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:layout_marginHorizontal="20dp"/>
+
+    <Button
+        android:id="@+id/bEnregistrer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Enregistrer l'aperçu" />
+
+</FrameLayout>

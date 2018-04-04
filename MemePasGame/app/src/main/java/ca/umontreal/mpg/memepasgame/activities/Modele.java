@@ -10,12 +10,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-
-
-
+import android.widget.ImageView;
 
 
 import ca.umontreal.mpg.memepasgame.R;
+import ca.umontreal.mpg.memepasgame.fragments.Apercu;
 import ca.umontreal.mpg.memepasgame.fragments.Modele1;
 import ca.umontreal.mpg.memepasgame.fragments.Modele2;
 import ca.umontreal.mpg.memepasgame.helpers.FragmentTags;
@@ -23,11 +22,14 @@ import ca.umontreal.mpg.memepasgame.helpers.MemeTags;
 
 public class Modele extends AppCompatActivity
     implements Modele1.OnFragmentInteractionListener,
-               Modele2.OnFragmentInteractionListener {
+               Modele2.OnFragmentInteractionListener,
+               Apercu.OnFragmentInteractionListener {
 
 
     public static FragmentTags CURRENT_TAG = FragmentTags.M1;
     public static MemeTags MEME_TAG = null;
+    public static ImageView imageModele;
+
     private Handler handler;
     private static FragmentManager manager;
 
@@ -82,7 +84,7 @@ public class Modele extends AppCompatActivity
     }
 
     @Override
-    public void onFragmentInteraction(final Fragment fragment) {
+    public void onFragmentInteraction(int position) {
 
         //handler.post(getFragmentRunnable(fragment));
     }
