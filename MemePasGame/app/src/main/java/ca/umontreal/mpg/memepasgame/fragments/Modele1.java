@@ -1,11 +1,7 @@
 package ca.umontreal.mpg.memepasgame.fragments;
 
 
-import android.app.FragmentManager;
-
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,17 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import ca.umontreal.mpg.memepasgame.R;
-import ca.umontreal.mpg.memepasgame.activities.Creation;
-import ca.umontreal.mpg.memepasgame.activities.MainActivity;
 import ca.umontreal.mpg.memepasgame.activities.Modele;
-
 import ca.umontreal.mpg.memepasgame.helpers.FragmentTags;
 import ca.umontreal.mpg.memepasgame.helpers.MemeTags;
+
+//import ca.umontreal.mpg.memepasgame.activities.Creation;
 
 
 /**
