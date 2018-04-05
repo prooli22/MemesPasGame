@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -82,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + nameFolder;
                 String currentDate = getCurrentDate();
                 File dir = new File(filePath);
-
                 if(!dir.exists()){
                     dir.mkdirs();
                 }

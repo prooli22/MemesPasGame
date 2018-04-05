@@ -1,6 +1,7 @@
 package ca.umontreal.mpg.memepasgame.fragments;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -59,7 +60,11 @@ public class Apercu extends Fragment {
         View view = inflater.inflate(R.layout.fragment_apercu, container, false);
 
         ImageView imageApercu = (ImageView) view.findViewById(R.id.imageApercu);
-        imageApercu.setImageBitmap(Modele.imageModele.getDrawingCache());
+        Modele.imageModele.setDrawingCacheEnabled(true);
+        Modele.imageModele.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(Modele.imageModele.getDrawingCache());
+        imageApercu.setImageBitmap(bitmap);
+
 
         Button bEnregistrer = (Button) view.findViewById(R.id.bEnregistrer);
         bEnregistrer.setOnClickListener(new View.OnClickListener() {

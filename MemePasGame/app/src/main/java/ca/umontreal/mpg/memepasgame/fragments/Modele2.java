@@ -139,10 +139,6 @@ public class Modele2 extends Fragment {
             tabMemeText.get(0).setTextSize(60);
         }
 
-        for (MemeText mt: tabMemeText) {
-            ajouterTextImage(mt.getEditText().getText().toString(), mt.getXpos(), mt.getYpos(), mt.getTextSize());
-        }
-
         Button bAjouter = (Button) view.findViewById(R.id.bAjouter);
         bAjouter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,6 +195,7 @@ public class Modele2 extends Fragment {
             et.setId(i + 1);
 
             p.addRule(RelativeLayout.BELOW, v.getId());
+            p.addRule(RelativeLayout.ALIGN_BOTTOM);
 
             layout.addView(et);
 
@@ -230,17 +227,18 @@ public class Modele2 extends Fragment {
 
             RelativeLayout.LayoutParams pCam = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             pCam.setMargins(20, 0, 0, 0);
+            pCam.addRule(RelativeLayout.ALIGN_BOTTOM);
             pCam.addRule(RelativeLayout.BELOW, v.getId());
-            pCam.addRule(RelativeLayout.LEFT_OF, bGallerie.getId());
             bCamera.setLayoutParams(pCam);
             layout.addView(bCamera);
 
             RelativeLayout.LayoutParams pGal = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             pGal.setMargins(0, 0, 0, 20);
+            pGal.addRule(RelativeLayout.ALIGN_BOTTOM);
             pGal.addRule(RelativeLayout.BELOW, v.getId());
             pGal.addRule(RelativeLayout.RIGHT_OF, bCamera.getId());
-            bCamera.setLayoutParams(pGal);
-            layout.addView(bCamera);
+            bGallerie.setLayoutParams(pGal);
+            layout.addView(bGallerie);
         }
 
     }
