@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -24,6 +25,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -57,6 +60,7 @@ public class Modele2 extends Fragment {
     public int position = 2;
     private OnFragmentInteractionListener mListener;
     private ArrayList<MemeText> tabMemeText;
+    private RelativeLayout imageLayout;
 
     public Modele2() {
         // Required empty public constructor
@@ -86,57 +90,92 @@ public class Modele2 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_modele2, container, false);
 
-        Modele.imageModele = view.findViewById(R.id.imageModele);
+        imageLayout = view.findViewById(R.id.imageLayout);
+        ImageView imageModele = view.findViewById(R.id.imageModele);
         tabMemeText = new ArrayList<>();
 
         if(Modele.MEME_TAG == MemeTags.BRAIN) {
-            Modele.imageModele.setImageResource(R.drawable.brain_meme);
-            ajouterChampsTexts(view, 4, false);
+            imageModele.setImageResource(R.drawable.brain_meme);
 
-            tabMemeText.get(0).setXpos(130);
-            tabMemeText.get(0).setYpos(160);
-            tabMemeText.get(0).setTextSize(60);
+            EditText texte1 = (EditText) view.findViewById(R.id.text1);
+            EditText texte2 = (EditText) view.findViewById(R.id.text2);
+            EditText texte3 = (EditText) view.findViewById(R.id.text3);
+            EditText texte4 = (EditText) view.findViewById(R.id.text4);
 
-            tabMemeText.get(1).setXpos(130);
-            tabMemeText.get(1).setYpos(160);
-            tabMemeText.get(1).setTextSize(60);
+            TextView textBrain1 = (TextView) view.findViewById(R.id.textBrain1);
+            TextView textBrain2 = (TextView) view.findViewById(R.id.textBrain2);
+            TextView textBrain3 = (TextView) view.findViewById(R.id.textBrain3);
+            TextView textBrain4 = (TextView) view.findViewById(R.id.textBrain4);
 
-            tabMemeText.get(2).setXpos(130);
-            tabMemeText.get(2).setYpos(160);
-            tabMemeText.get(2).setTextSize(60);
+            texte2.setVisibility(View.VISIBLE);
+            texte3.setVisibility(View.VISIBLE);
+            texte4.setVisibility(View.VISIBLE);
 
-            tabMemeText.get(3).setXpos(130);
-            tabMemeText.get(3).setYpos(160);
-            tabMemeText.get(3).setTextSize(60);
+            textBrain1.setVisibility(View.VISIBLE);
+            textBrain2.setVisibility(View.VISIBLE);
+            textBrain3.setVisibility(View.VISIBLE);
+            textBrain4.setVisibility(View.VISIBLE);
+
+            tabMemeText.add(new MemeText(texte1, textBrain1));
+            tabMemeText.add(new MemeText(texte2, textBrain2));
+            tabMemeText.add(new MemeText(texte3, textBrain3));
+            tabMemeText.add(new MemeText(texte4, textBrain4));
         }
+
         else if(Modele.MEME_TAG == MemeTags.DRAKE) {
-            Modele.imageModele.setImageResource(R.drawable.drake_meme);
-            ajouterChampsTexts(view, 2, false);
+            imageModele.setImageResource(R.drawable.drake_meme);
 
-            tabMemeText.get(0).setXpos(130);
-            tabMemeText.get(0).setYpos(160);
-            tabMemeText.get(0).setTextSize(60);
+            EditText texte1 = (EditText) view.findViewById(R.id.text1);
+            EditText texte2 = (EditText) view.findViewById(R.id.text2);
+            texte2.setVisibility(View.VISIBLE);
 
-            tabMemeText.get(1).setXpos(130);
-            tabMemeText.get(1).setYpos(160);
-            tabMemeText.get(1).setTextSize(60);
+            TextView textDrake1 = (TextView) view.findViewById(R.id.textDrake1);
+            textDrake1.setVisibility(View.VISIBLE);
+            TextView textDrake2 = (TextView) view.findViewById(R.id.textDrake2);
+            textDrake2.setVisibility(View.VISIBLE);
+
+            tabMemeText.add(new MemeText(texte1, textDrake1));
+            tabMemeText.add(new MemeText(texte2, textDrake2));
         }
 
         else if(Modele.MEME_TAG == MemeTags.TWITTER) {
-            Modele.imageModele.setImageResource(R.drawable.twitter_meme_template);
-            ajouterChampsTexts(view, 1, true);
+            imageModele.setImageResource(R.drawable.twitter_meme_template);
 
-            tabMemeText.get(0).setXpos(130);
-            tabMemeText.get(0).setYpos(160);
-            tabMemeText.get(0).setTextSize(60);
+            EditText texte1 = (EditText) view.findViewById(R.id.text1);
+
+            TextView textTwitter = (TextView) view.findViewById(R.id.textTwitter);
+            textTwitter.setVisibility(View.VISIBLE);
+
+            tabMemeText.add(new MemeText(texte1, textTwitter));
+
+            Button bCameraM2 = (Button) view.findViewById(R.id.bCameraM2);
+            bCameraM2.setVisibility(View.VISIBLE);
+            bCameraM2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
+            Button bGallerieM2 = (Button) view.findViewById(R.id.bGallerieM2);
+            bGallerieM2.setVisibility(View.VISIBLE);
+            bGallerieM2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
-        else if(Modele.MEME_TAG == MemeTags.PATRICK) {
-            Modele.imageModele.setImageResource(R.drawable.patrick_meme);
-            ajouterChampsTexts(view, 1, false);
 
-            tabMemeText.get(0).setXpos(130);
-            tabMemeText.get(0).setYpos(160);
-            tabMemeText.get(0).setTextSize(60);
+        else if(Modele.MEME_TAG == MemeTags.PATRICK) {
+            imageModele.setImageResource(R.drawable.patrick_meme_template);
+
+            EditText texte1 = (EditText) view.findViewById(R.id.text1);
+
+            TextView textPatrick = (TextView) view.findViewById(R.id.textPatrick);
+            textPatrick.setVisibility(View.VISIBLE);
+
+            tabMemeText.add(new MemeText(texte1, textPatrick));
         }
 
         Button bAjouter = (Button) view.findViewById(R.id.bAjouter);
@@ -145,7 +184,7 @@ public class Modele2 extends Fragment {
             public void onClick(View v) {
 
                 for (MemeText mt: tabMemeText) {
-                    ajouterTextImage(mt.getEditText().getText().toString(), mt.getXpos(), mt.getYpos(), mt.getTextSize());
+                    mt.getTextView().setText(mt.getEditText().getText().toString());
                 }
             }
         });
@@ -154,12 +193,20 @@ public class Modele2 extends Fragment {
         bContinuer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                screenshot();
                 Modele.changerFragment(Apercu.newInstance(3));
                 Modele.CURRENT_TAG = FragmentTags.APERCU;
             }
         });
 
         return view;
+    }
+
+    private void screenshot(){
+
+        imageLayout.setDrawingCacheEnabled(true);
+        Modele.bitmapScreenshot = Bitmap.createBitmap(imageLayout.getDrawingCache());
+        imageLayout.setDrawingCacheEnabled(false);
     }
 
     @Override
@@ -179,85 +226,22 @@ public class Modele2 extends Fragment {
         mListener = null;
     }
 
-    public void ajouterChampsTexts(View view, int nbTexte, boolean ajouterBoutons){
-
-        RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.imageLayout);
-        RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        p.setMargins(20, 0, 20, 0);
-
-        View v = Modele.imageModele;
-
-        for(int i = 0; i < nbTexte; i++) {
-
-            EditText et = new EditText(getContext());
-            et.setLayoutParams(p);
-            et.setText("Texte " + (i + 1));
-            et.setId(i + 1);
-
-            p.addRule(RelativeLayout.BELOW, v.getId());
-            p.addRule(RelativeLayout.ALIGN_BOTTOM);
-
-            layout.addView(et);
-
-            tabMemeText.add(new MemeText(et));
-            v = et;
-        }
-
-        if(ajouterBoutons) {
-
-            Button bCamera = new Button(getContext());
-            bCamera.setText("Caméra");
-            bCamera.setId(R.id.bCamera);
-            bCamera.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-
-            Button bGallerie = new Button(getContext());
-            bGallerie.setText("Gallerie");
-            bGallerie.setId(R.id.bGallerie);
-            bGallerie.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-
-            RelativeLayout.LayoutParams pCam = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            pCam.setMargins(20, 0, 0, 0);
-            pCam.addRule(RelativeLayout.ALIGN_BOTTOM);
-            pCam.addRule(RelativeLayout.BELOW, v.getId());
-            bCamera.setLayoutParams(pCam);
-            layout.addView(bCamera);
-
-            RelativeLayout.LayoutParams pGal = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            pGal.setMargins(0, 0, 0, 20);
-            pGal.addRule(RelativeLayout.ALIGN_BOTTOM);
-            pGal.addRule(RelativeLayout.BELOW, v.getId());
-            pGal.addRule(RelativeLayout.RIGHT_OF, bCamera.getId());
-            bGallerie.setLayoutParams(pGal);
-            layout.addView(bGallerie);
-        }
-
-    }
 
     public void ajouterTextImage(String text, int xpos, int ypos, int textSize){
 
-        Modele.imageModele.setDrawingCacheEnabled(true);
-        Modele.imageModele.buildDrawingCache();
-        Bitmap bitmap = Bitmap.createBitmap(Modele.imageModele.getDrawingCache());
+        //Modele.imageModele.setDrawingCacheEnabled(true);
+        //Modele.imageModele.buildDrawingCache();
+        //Bitmap bitmap = Bitmap.createBitmap(Modele.imageModele.getDrawingCache());
 
-        Canvas canvas = new Canvas(bitmap);
-        Paint paint = new Paint();
-        paint.setColor(Color.BLACK);
-        paint.setTextSize(textSize);
-        Typeface arial = Typeface.createFromAsset(getContext().getAssets(), "fonts/Arial.ttf");
-        paint.setTypeface(arial);
-        canvas.drawText(text, xpos, ypos, paint);
+        //Canvas canvas = new Canvas(bitmap);
+        //Paint paint = new Paint();
+        //paint.setColor(Color.BLACK);
+        //paint.setTextSize(textSize);
+        //Typeface arial = Typeface.createFromAsset(getContext().getAssets(), "fonts/Arial.ttf");
+        //paint.setTypeface(arial);
+        //canvas.drawText(text, xpos, ypos, paint);
 
-        Modele.imageModele.setImageBitmap(bitmap);
+        //Modele.imageModele.setImageBitmap(bitmap);
     }
 
 

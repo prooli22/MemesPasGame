@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     imageToSaved.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
                     fOut.flush();
                     fOut.close();
-                    testCreatedFile(file);
+                    //testCreatedFile(file);
                     Toast.makeText(getApplicationContext(), "picture saved", Toast.LENGTH_SHORT).show();
                 }
                 catch (FileNotFoundException e ){
@@ -111,8 +111,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void testCreatedFile(File file){
-        MediaScannerConnection.scanFile(getApplicationContext(),
+    public static void testCreatedFile(File file, Context context){
+        MediaScannerConnection.scanFile(context,
                 new String[]{file.toString()}, null,
                 new MediaScannerConnection.OnScanCompletedListener() {
                     @Override
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private static String getCurrentDate(){
+    public static String getCurrentDate(){
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         return df.format(c.getTime());

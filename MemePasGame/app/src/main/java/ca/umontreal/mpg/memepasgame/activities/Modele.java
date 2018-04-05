@@ -3,6 +3,7 @@ package ca.umontreal.mpg.memepasgame.activities;
 
 import android.content.Intent;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -28,7 +29,7 @@ public class Modele extends AppCompatActivity
 
     public static FragmentTags CURRENT_TAG = FragmentTags.M1;
     public static MemeTags MEME_TAG = null;
-    public static ImageView imageModele;
+    public static Bitmap bitmapScreenshot;
 
     private Handler handler;
     private static FragmentManager manager;

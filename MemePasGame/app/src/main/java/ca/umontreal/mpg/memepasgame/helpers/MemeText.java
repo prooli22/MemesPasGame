@@ -1,6 +1,7 @@
 package ca.umontreal.mpg.memepasgame.helpers;
 
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by provosto on 18-04-04.
@@ -9,15 +10,11 @@ import android.widget.EditText;
 public class MemeText {
 
     public EditText editText;
-    public int xpos;
-    public int ypos;
-    public int textSize;
+    public TextView textView;
 
-    public MemeText(EditText et){
+    public MemeText(EditText et, TextView tv){
         editText = et;
-        xpos = 0;
-        ypos = 0;
-        textSize = 20;
+        textView = tv;
     }
 
     public EditText getEditText() {
@@ -28,27 +25,11 @@ public class MemeText {
         this.editText = editText;
     }
 
-    public int getXpos() {
-        return xpos;
+    public TextView getTextView() {
+        return textView;
     }
 
-    public void setXpos(int xpos) {
-        this.xpos = xpos;
-    }
-
-    public int getYpos() {
-        return ypos;
-    }
-
-    public void setYpos(int ypos) {
-        this.ypos = ypos;
-    }
-
-    public int getTextSize() {
-        return textSize;
-    }
-
-    public void setTextSize(int textSize) {
-        this.textSize = textSize;
+    public void setTextView(TextView textView) {
+        this.textView = textView;
     }
 }

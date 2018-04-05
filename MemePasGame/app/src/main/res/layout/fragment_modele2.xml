@@ -26,15 +26,162 @@
         android:layout_height="340dp"
         android:layout_marginTop="100dp">
         <RelativeLayout
-            android:id="@+id/imageLayout"
+            android:id="@+id/imageContaine"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageModele"
+            <RelativeLayout
+                android:id="@+id/imageLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageModele"
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/textTwitter"
+                    android:layout_width="310dp"
+                    android:layout_height="60dp"
+                    android:text="Texte 1"
+                    android:textSize="10pt"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/textPatrick"
+                    android:layout_width="280dp"
+                    android:layout_height="60dp"
+                    android:text="Texte 1"
+                    android:textSize="10pt"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="40dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/textDrake1"
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:text="Texte 1"
+                    android:textSize="10pt"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="190dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/textDrake2"
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:text="Texte 2"
+                    android:textSize="10pt"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="160dp"
+                    android:layout_marginLeft="190dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/textBrain1"
+                    android:layout_width="100dp"
+                    android:layout_height="65dp"
+                    android:text="Texte 1"
+                    android:textSize="6pt"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="75dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/textBrain2"
+                    android:layout_width="100dp"
+                    android:layout_height="65dp"
+                    android:text="Texte 2"
+                    android:textSize="6pt"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginLeft="75dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/textBrain3"
+                    android:layout_width="100dp"
+                    android:layout_height="65dp"
+                    android:text="Texte 3"
+                    android:textSize="6pt"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="155dp"
+                    android:layout_marginLeft="75dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/textBrain4"
+                    android:layout_width="100dp"
+                    android:layout_height="65dp"
+                    android:text="Texte 4"
+                    android:textSize="6pt"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="225dp"
+                    android:layout_marginLeft="75dp"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+
+            <EditText
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageLayout"
+                android:hint="Texte 1"/>
+
+            <Button
+                android:id="@+id/bCameraM2"
                 android:layout_width="wrap_content"
-                android:layout_height="300dp"
-                android:layout_centerHorizontal="true"/>
+                android:layout_height="wrap_content"
+                android:text="Caméra"
+                android:layout_below="@id/text1"
+                android:layout_alignLeft="@id/text1"
+                android:layout_marginLeft="50dp"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/bGallerieM2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gallerie"
+                android:layout_below="@id/text1"
+                android:layout_alignRight="@id/text1"
+                android:layout_marginRight="50dp"
+                android:visibility="gone"/>
+
+            <EditText
+                android:id="@+id/text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text1"
+                android:hint="Texte 2"
+                android:visibility="gone"/>
+
+            <EditText
+                android:id="@+id/text3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text2"
+                android:hint="Texte 3"
+                android:visibility="gone"/>
+
+            <EditText
+                android:id="@+id/text4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text3"
+                android:hint="Texte 4"
+                android:visibility="gone"/>
 
         </RelativeLayout>
     </ScrollView>
@@ -45,7 +192,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="left|bottom"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginBottom="15dp"
         android:text="Ajouter au modèle" />
 

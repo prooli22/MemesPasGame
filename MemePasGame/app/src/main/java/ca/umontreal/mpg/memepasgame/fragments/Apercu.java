@@ -2,16 +2,27 @@ package ca.umontreal.mpg.memepasgame.fragments;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import ca.umontreal.mpg.memepasgame.R;
+import ca.umontreal.mpg.memepasgame.activities.MainActivity;
 import ca.umontreal.mpg.memepasgame.activities.Modele;
 
 /**
@@ -59,22 +70,49 @@ public class Apercu extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_apercu, container, false);
 
-        ImageView imageApercu = (ImageView) view.findViewById(R.id.imageApercu);
-        Modele.imageModele.setDrawingCacheEnabled(true);
-        Modele.imageModele.buildDrawingCache();
-        Bitmap bitmap = Bitmap.createBitmap(Modele.imageModele.getDrawingCache());
-        imageApercu.setImageBitmap(bitmap);
+        final ImageView imageApercu = (ImageView) view.findViewById(R.id.imageApercu);
+        imageApercu.setImageBitmap(Modele.bitmapScreenshot);
 
 
         Button bEnregistrer = (Button) view.findViewById(R.id.bEnregistrer);
         bEnregistrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                saveImage(view);
             }
         });
 
         return view;
+    }
+
+    private void saveImage(View view){
+
+        String currentImage = "MPG_" + System.currentTimeMillis() + ".png";
+        store(Modele.bitmapScreenshot, currentImage);
+    }
+
+    private void store(Bitmap bm, String fileName){
+        String pathDossier = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
+        File dossier = new File(pathDossier);
+
+        if(!dossier.exists())
+            dossier.mkdir();
+
+        File file = new File(pathDossier, fileName);
+
+        try{
+            FileOutputStream fOut = null;
+            fOut = new FileOutputStream(file);
+
+            bm.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+
+            fOut.flush();
+            fOut.close();
+
+            Toast.makeText(getContext(), "Enregistré", Toast.LENGTH_SHORT).show();
+        }
+        catch (FileNotFoundException e) { e.printStackTrace(); }
+        catch (IOException e) { e.printStackTrace(); }
     }
 
 
