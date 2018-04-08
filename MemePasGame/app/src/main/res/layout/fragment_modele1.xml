@@ -30,7 +30,7 @@
         android:background="#000000"
         android:padding="2dp"
         android:scaleType="fitXY"
-        android:src="@drawable/brain_meme" />
+        android:src="@drawable/boutonbrain" />
 
     <ImageButton
         android:id="@+id/img_drake_meme"
@@ -42,7 +42,7 @@
         android:background="#000000"
         android:padding="2dp"
         android:scaleType="fitXY"
-        android:src="@drawable/drake_meme" />
+        android:src="@drawable/boutondrake" />
 
     <ImageButton
         android:id="@+id/img_twitter_meme"
@@ -53,7 +53,7 @@
         android:background="#000000"
         android:padding="2dp"
         android:scaleType="fitXY"
-        android:src="@drawable/twitter_meme" />
+        android:src="@drawable/boutontwitter" />
 
     <ImageButton
         android:id="@+id/img_patrick_meme"
@@ -65,7 +65,7 @@
         android:background="#000000"
         android:padding="2dp"
         android:scaleType="fitXY"
-        android:src="@drawable/patrick_meme" />
+        android:src="@drawable/boutonpatrick" />
 
     <Button
         android:id="@+id/b_ContinuerM1"
