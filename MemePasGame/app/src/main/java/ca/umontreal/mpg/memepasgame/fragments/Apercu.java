@@ -1,5 +1,6 @@
 package ca.umontreal.mpg.memepasgame.fragments;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,6 +8,7 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
 import ca.umontreal.mpg.memepasgame.R;
@@ -43,6 +46,8 @@ public class Apercu extends Fragment {
     // TODO: Rename and change types of parameters
     public int position = 3;
     private OnFragmentInteractionListener mListener;
+
+    private static Button bRetour;
 
     public Apercu() {
         // Required empty public constructor
@@ -79,7 +84,7 @@ public class Apercu extends Fragment {
         bShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shareImage(imageApercu);
+                partagerImage(imageApercu);
             }
         });
 
@@ -87,15 +92,27 @@ public class Apercu extends Fragment {
         bEnregistrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveImage(view);
+                enregistrerImage();
+
+                // On efface le bouton enregistrer, pour afficher retour à l'accueil.
+                view.setVisibility(View.GONE);
+                bRetour.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        bRetour = (Button) view.findViewById(R.id.bRetour);
+        bRetour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Modele.retour();
             }
         });
 
         return view;
     }
 
-
-    private void shareImage (View view){
+    private void partagerImage (View view){
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/*");
@@ -114,41 +131,58 @@ public class Apercu extends Fragment {
             cachePath.createNewFile();
             FileOutputStream fileOutputStream = new FileOutputStream(cachePath);
             fileOutputStream.write(byteArrayOutputStream.toByteArray());
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        catch (IOException e) {e.printStackTrace();}
+
         shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(cachePath));
         startActivity(Intent.createChooser(shareIntent, "Share Image"));
     }
 
-    private void saveImage(View view){
+    // Permet d'enregistrer l'image créée dans la galerie.
+    private void enregistrerImage(){
 
-        String currentImage = "MPG_" + System.currentTimeMillis() + ".png";
-        store(Modele.bitmapScreenshot, currentImage);
+        //String currentImage = "MPG_" + System.currentTimeMillis() + ".png";
+        //enregistrer(Modele.bitmapScreenshot, currentImage);
+
+        Uri path = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
+
+        try {
+            OutputStream stream = getContext().getContentResolver().openOutputStream(path);
+            Modele.bitmapScreenshot.compress(Bitmap.CompressFormat.JPEG, 90, stream);
+        }
+
+        catch (FileNotFoundException e) {
+            Log.e ("ERROR", e.getMessage());
+        }
+
+        Toast.makeText(getContext(), "Enregistré", Toast.LENGTH_SHORT).show();
     }
 
-    private void store(Bitmap bm, String fileName){
-        String pathDossier = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
-        File dossier = new File(pathDossier);
 
-        if(!dossier.exists())
-            dossier.mkdir();
+    // Permet d'enregistrer l'image créée dans la galerie.
+    private void enregistrer(Bitmap bm, String fileName){
 
-        File file = new File(pathDossier, fileName);
-
-        try{
-            FileOutputStream fOut = null;
-            fOut = new FileOutputStream(file);
-
-            bm.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-
-            fOut.flush();
-            fOut.close();
-
-            Toast.makeText(getContext(), "Enregistré", Toast.LENGTH_SHORT).show();
-        }
-        catch (FileNotFoundException e) { e.printStackTrace(); }
-        catch (IOException e) { e.printStackTrace(); }
+//        String pathDossier = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
+//        File dossier = new File(pathDossier);
+//
+//        if(!dossier.exists())
+//            dossier.mkdir();
+//
+//        File file = new File(pathDossier, fileName);
+//
+//        try{
+//            FileOutputStream fOut = null;
+//            fOut = new FileOutputStream(file);
+//
+//            bm.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+//
+//            fOut.flush();
+//            fOut.close();
+//
+//            Toast.makeText(getContext(), "Enregistré", Toast.LENGTH_SHORT).show();
+//        }
+//        catch (FileNotFoundException e) { e.printStackTrace(); }
+//        catch (IOException e) { e.printStackTrace(); }
     }
 
 

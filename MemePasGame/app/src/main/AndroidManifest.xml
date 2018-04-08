@@ -2,12 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.umontreal.mpg.memepasgame">
 
-    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
-    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
-    <!--<uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />-->
-    <!--<uses-permission android:name="android.permission.CAMERA" />-->
-    <!--<uses-feature android:name="android.hardware.camera" />-->
-    <!--<uses-feature android:name="android.hardware.camera.autofocus" />-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -25,19 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.Modele">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-                <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-                <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
-                <uses-permission android:name="android.permission.CAMERA" />
-                <uses-feature android:name="android.hardware.camera" />
-                <uses-feature android:name="android.hardware.camera.autofocus" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
 
         </activity>
     </application>

@@ -30,17 +30,30 @@
 
     <Button
         android:id="@+id/bEnregistrer"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginHorizontal="40dp"
+        android:layout_gravity="left|bottom"
         android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
         android:text="Enregistrer l'aperçu" />
+
+    <Button
+        android:id="@+id/bRetour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="Retour à l'accueil"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/bShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp"
         android:text="Partager" />
 
 </FrameLayout>
