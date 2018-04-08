@@ -1,6 +1,7 @@
 package ca.umontreal.mpg.memepasgame.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -73,6 +75,13 @@ public class Apercu extends Fragment {
         final ImageView imageApercu = (ImageView) view.findViewById(R.id.imageApercu);
         imageApercu.setImageBitmap(Modele.bitmapScreenshot);
 
+        Button bShare = (Button) view.findViewById(R.id.bShare);
+        bShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shareImage(imageApercu);
+            }
+        });
 
         Button bEnregistrer = (Button) view.findViewById(R.id.bEnregistrer);
         bEnregistrer.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +92,33 @@ public class Apercu extends Fragment {
         });
 
         return view;
+    }
+
+
+    private void shareImage (View view){
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("image/*");
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        view.buildDrawingCache();
+        Bitmap imageApercuBitMap = view.getDrawingCache();
+
+        imageApercuBitMap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        //File file = new File(Environment.getExternalStorageDirectory()+ File.separator+"ImageDemo.jpg");
+
+        File root = Environment.getExternalStorageDirectory();
+        File cachePath = new File(root.getAbsolutePath() + "/DCIM/Camera/image.jpg");
+
+        try {
+            cachePath.createNewFile();
+            FileOutputStream fileOutputStream = new FileOutputStream(cachePath);
+            fileOutputStream.write(byteArrayOutputStream.toByteArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(cachePath));
+        startActivity(Intent.createChooser(shareIntent, "Share Image"));
     }
 
     private void saveImage(View view){
