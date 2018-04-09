@@ -136,6 +136,8 @@ public class Modele2 extends Fragment {
                     Modele.galerieClick(getActivity());
                 }
             });
+
+
         }
 
         else if(Modele.MEME_TAG == MemeTags.PATRICK) {
@@ -163,14 +165,13 @@ public class Modele2 extends Fragment {
 
 
         // Si l'image twitter a déjà été créée, on l'affiche (onBackPress).
-        if(bmChoosen != null) {
+        if(bmChoosen != null && Modele.MEME_TAG == MemeTags.TWITTER) {
             imageTwitter.setVisibility(View.VISIBLE);
             imageTwitter.setImageBitmap(bmChoosen);
         }
 
         return view;
     }
-
 
 
     private void screenshot(){

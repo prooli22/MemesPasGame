@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -23,6 +24,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -89,7 +91,15 @@ public class Modele extends AppCompatActivity
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
 
-            Modele2.ajouterImage(cameraImage);
+            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
+            Uri tempUri = getImageUri(getApplicationContext(), cameraImage);
+
+            //getRealPathFromURI(tempUri)
+            try {
+                Modele2.ajouterImage(modifyOrientation(cameraImage, tempUri.toString()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         // Est-ce que c'est vraiment la gallerie que l'ont veut ouvrir ?
@@ -113,6 +123,19 @@ public class Modele extends AppCompatActivity
         }
     }
 
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
+    }
 
     // Permet d'accéder à la caméra de l'appareil et d'obtenir la photo prise.
     public static void cameraClick(Activity activity){
@@ -146,13 +169,13 @@ public class Modele extends AppCompatActivity
 
         switch (orientation) {
             case ExifInterface.ORIENTATION_ROTATE_90:
-                return rotate(bitmap, 90);
+                return rotate(bitmap, -90);
 
             case ExifInterface.ORIENTATION_ROTATE_180:
-                return rotate(bitmap, 180);
+                return rotate(bitmap, -180);
 
             case ExifInterface.ORIENTATION_ROTATE_270:
-                return rotate(bitmap, 270);
+                return rotate(bitmap, -270);
 
             case ExifInterface.ORIENTATION_FLIP_HORIZONTAL:
                 return flip(bitmap, true, false);

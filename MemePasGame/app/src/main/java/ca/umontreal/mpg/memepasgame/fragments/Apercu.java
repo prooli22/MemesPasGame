@@ -157,8 +157,8 @@ public class Apercu extends Fragment {
         Uri path = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
 
         try {
-            OutputStream stream = getContext().getContentResolver().openOutputStream(path);
-            Modele.bitmapScreenshot.compress(Bitmap.CompressFormat.JPEG, 90, stream);
+            OutputStream bytes = getContext().getContentResolver().openOutputStream(path);
+            Modele.bitmapScreenshot.compress(Bitmap.CompressFormat.PNG, 100, bytes);
         }
 
         catch (FileNotFoundException e) {

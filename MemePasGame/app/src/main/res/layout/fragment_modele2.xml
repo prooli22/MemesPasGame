@@ -203,5 +203,11 @@
         android:progress="50"
         style="@android:style/Widget.ProgressBar.Horizontal" />
 
+    <Button
+        android:id="@+id/bOrientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Orientaton" />
+
 
 </FrameLayout>
