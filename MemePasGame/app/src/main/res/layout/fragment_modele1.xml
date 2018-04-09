@@ -76,20 +76,5 @@
         android:layout_marginRight="20dp"
         android:text="Continuer" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Modèle sélectionné : "
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="20dp"/>
-
-    <TextView
-        android:id="@+id/modele_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="150dp"/>
 
 </FrameLayout>

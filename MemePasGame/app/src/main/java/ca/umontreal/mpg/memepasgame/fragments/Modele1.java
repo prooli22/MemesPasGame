@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import ca.umontreal.mpg.memepasgame.R;
@@ -65,60 +64,90 @@ public class Modele1 extends Fragment {
         // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_modele1, container, false);
 
-        final TextView modele_select = (TextView) view.findViewById(R.id.modele_select);
+
 
         final ImageButton brain_meme = (ImageButton) view.findViewById(R.id.img_brain_meme);
+        final ImageButton drake_meme = (ImageButton) view.findViewById(R.id.img_drake_meme);
+        final ImageButton twitter_meme = (ImageButton) view.findViewById(R.id.img_twitter_meme);
+        final ImageButton patrick_meme = (ImageButton) view.findViewById(R.id.img_patrick_meme);
+
         brain_meme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Modele.MEME_TAG == MemeTags.BRAIN)
+                if(Modele.MEME_TAG == MemeTags.BRAIN){
                     Modele.MEME_TAG = null;
+                    brain_meme.setImageResource(R.drawable.brain_meme);
+                }
 
                 else{
+                    drake_meme.setImageResource(R.drawable.drake_meme);
+                    twitter_meme.setImageResource(R.drawable.twitter_meme);
+                    patrick_meme.setImageResource(R.drawable.patrick_meme);
+
                     Modele.MEME_TAG = MemeTags.BRAIN;
-                    modele_select.setText(Modele.MEME_TAG.toString());
+
+                    brain_meme.setImageResource(R.drawable.brain_memec);
                 }
             }
         });
 
-        final ImageButton drake_meme = (ImageButton) view.findViewById(R.id.img_drake_meme);
         drake_meme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Modele.MEME_TAG == MemeTags.DRAKE)
+                if(Modele.MEME_TAG == MemeTags.DRAKE){
                     Modele.MEME_TAG = null;
+                    drake_meme.setImageResource(R.drawable.drake_meme);
+                }
 
                 else {
+                    brain_meme.setImageResource(R.drawable.brain_meme);
+                    twitter_meme.setImageResource(R.drawable.twitter_meme);
+                    patrick_meme.setImageResource(R.drawable.patrick_meme);
+
                     Modele.MEME_TAG = MemeTags.DRAKE;
-                    modele_select.setText(Modele.MEME_TAG.toString());
+
+                    drake_meme.setImageResource(R.drawable.drakec);
                 }
             }
         });
 
-        final ImageButton twitter_meme = (ImageButton) view.findViewById(R.id.img_twitter_meme);
         twitter_meme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Modele.MEME_TAG == MemeTags.TWITTER)
+                if(Modele.MEME_TAG == MemeTags.TWITTER){
                     Modele.MEME_TAG = null;
+                    twitter_meme.setImageResource(R.drawable.twitter_meme);
+                }
 
                 else {
+                    drake_meme.setImageResource(R.drawable.drake_meme);
+                    brain_meme.setImageResource(R.drawable.brain_meme);
+                    patrick_meme.setImageResource(R.drawable.patrick_meme);
+
                     Modele.MEME_TAG = MemeTags.TWITTER;
-                    modele_select.setText(Modele.MEME_TAG.toString());
+
+                    twitter_meme.setImageResource(R.drawable.twitter_memec);
                 }
             }
         });
 
-        final ImageButton patrick_meme = (ImageButton) view.findViewById(R.id.img_patrick_meme);
         patrick_meme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Modele.MEME_TAG == MemeTags.PATRICK)
+                if(Modele.MEME_TAG == MemeTags.PATRICK){
                     Modele.MEME_TAG = null;
+                    patrick_meme.setImageResource(R.drawable.patrick_meme);
+                }
+
 
                 else {
+                    drake_meme.setImageResource(R.drawable.drake_meme);
+                    twitter_meme.setImageResource(R.drawable.twitter_meme);
+                    brain_meme.setImageResource(R.drawable.brain_meme);
+
                     Modele.MEME_TAG = MemeTags.PATRICK;
-                    modele_select.setText(Modele.MEME_TAG.toString());
+
+                    patrick_meme.setImageResource(R.drawable.patrick_memec);
                 }
             }
         });
