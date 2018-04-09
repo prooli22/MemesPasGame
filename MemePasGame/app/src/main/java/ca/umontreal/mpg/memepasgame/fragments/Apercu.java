@@ -120,13 +120,11 @@ public class Apercu extends Fragment {
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/*");
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
         view.buildDrawingCache();
         Bitmap imageApercuBitMap = view.getDrawingCache();
 
-        imageApercuBitMap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        //File file = new File(Environment.getExternalStorageDirectory()+ File.separator+"ImageDemo.jpg");
+        imageApercuBitMap.compress(Bitmap.CompressFormat.PNG, 100, new ByteArrayOutputStream());
 
         File root = Environment.getExternalStorageDirectory();
         File cachePath = new File(root.getAbsolutePath() + "/DCIM/Camera/image.jpg");
@@ -134,7 +132,7 @@ public class Apercu extends Fragment {
         try {
             cachePath.createNewFile();
             FileOutputStream fileOutputStream = new FileOutputStream(cachePath);
-            fileOutputStream.write(byteArrayOutputStream.toByteArray());
+            fileOutputStream.write(new ByteArrayOutputStream().toByteArray());
         }
         catch (IOException e) {e.printStackTrace();}
 
@@ -150,9 +148,6 @@ public class Apercu extends Fragment {
 
     // Permet d'enregistrer l'image créée dans la galerie.
     private void enregistrerImage(){
-
-        //String currentImage = "MPG_" + System.currentTimeMillis() + ".png";
-        //enregistrer(Modele.bitmapScreenshot, currentImage);
 
         Uri path = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
 

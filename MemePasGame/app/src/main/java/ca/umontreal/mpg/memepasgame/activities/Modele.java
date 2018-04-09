@@ -90,16 +90,17 @@ public class Modele extends AppCompatActivity
         // Est-ce que c'est vraiment la caméra que l'on veut ouvrir ?
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+            Modele2.ajouterImage(rotate(cameraImage, 90));
 
-            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-            Uri tempUri = getImageUri(getApplicationContext(), cameraImage);
-
-            //getRealPathFromURI(tempUri)
-            try {
-                Modele2.ajouterImage(modifyOrientation(cameraImage, tempUri.toString()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
+//            Uri tempUri = getImageUri(getApplicationContext(), cameraImage);
+//
+//            //getRealPathFromURI(tempUri)
+//            try {
+//                Modele2.ajouterImage(modifyOrientation(cameraImage, tempUri.toString()));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         }
 
         // Est-ce que c'est vraiment la gallerie que l'ont veut ouvrir ?
