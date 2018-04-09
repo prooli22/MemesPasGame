@@ -28,6 +28,7 @@ import ca.umontreal.mpg.memepasgame.helpers.MemeTags;
  * create an instance of this fragment.
  */
 public class Modele1 extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_POSITION = "position";

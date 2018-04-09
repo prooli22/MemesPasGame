@@ -76,5 +76,13 @@
         android:layout_marginRight="20dp"
         android:text="Continuer" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:progress="25"
+        style="@android:style/Widget.ProgressBar.Horizontal" />
+
 
 </FrameLayout>

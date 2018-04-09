@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,10 +23,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 
 import ca.umontreal.mpg.memepasgame.R;
-import ca.umontreal.mpg.memepasgame.activities.MainActivity;
 import ca.umontreal.mpg.memepasgame.activities.Modele;
 
 /**
@@ -156,6 +153,7 @@ public class Apercu extends Fragment {
         }
 
         Toast.makeText(getContext(), "Enregistré", Toast.LENGTH_SHORT).show();
+        
     }
 
 
