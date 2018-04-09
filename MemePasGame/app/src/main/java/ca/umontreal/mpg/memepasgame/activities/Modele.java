@@ -2,10 +2,13 @@ package ca.umontreal.mpg.memepasgame.activities;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -22,6 +25,7 @@ import android.widget.ImageView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 import ca.umontreal.mpg.memepasgame.R;
@@ -46,16 +50,22 @@ public class Modele extends AppCompatActivity
 
     private static FragmentManager manager;
 
+    private static Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modele);
 
         manager = getSupportFragmentManager();
+        context = this;
 
+        // On affiche le premier fragment.
         changerFragment(Modele1.newInstance(1));
     }
 
+
+    // Permet de changer de fragment.
     public static void changerFragment(Fragment fragment){
 
         FragmentTransaction fragmentTransaction = manager.beginTransaction();
@@ -65,24 +75,32 @@ public class Modele extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
+
+    public static void retour(){
+        context.startActivity(new Intent(context, MainActivity.class));
+    }
+
+
+    // Une fois la caméra ou la galerie fermée, on veut gérer la photo.
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(resultCode, resultCode, data);
 
-        //Est-ce que c'est vraiment la caméra que l'on veut ouvrir?
+        // Est-ce que c'est vraiment la caméra que l'on veut ouvrir ?
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
 
             Modele2.ajouterImage(cameraImage);
         }
 
-        //Est-ce que c'est vraiment la gallerie que l'ont veut ouvrir?
+        // Est-ce que c'est vraiment la gallerie que l'ont veut ouvrir ?
         if(requestCode == IMAGE_GALLERY_REQUEST && resultCode == Activity.RESULT_OK){
-            //L'adresse sur la carte SD
+
+            // L'adresse sur l'appareil.
             Uri imageUri = data.getData();
 
             InputStream inputStream;
 
-            //On prend un input basé sur le Uri de l'image
+            // On prend un input basé sur le Uri de l'image.
             try {
                 inputStream = getContentResolver().openInputStream(imageUri);
                 Bitmap imageGal = BitmapFactory.decodeStream(inputStream);
@@ -91,20 +109,20 @@ public class Modele extends AppCompatActivity
                 //imageChosen.setImageBitmap(imageGalChosen);
                 Modele2.ajouterImage(imageGal);
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                //Toast.makeText("Impossible d'ouvrir cette photo");
-            }
-
+            } catch (FileNotFoundException e) { e.printStackTrace(); }
         }
     }
 
+
+    // Permet d'accéder à la caméra de l'appareil et d'obtenir la photo prise.
     public static void cameraClick(Activity activity){
 
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         activity.startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
+
+    // Permet d'accéder à la galerie de l'appareil et d'aller chercher une image.
     public static void galerieClick(Activity activity){
 
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
@@ -112,6 +130,7 @@ public class Modele extends AppCompatActivity
         //On veut chercher data ou?
         File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         String pictureDirectoryPath = pictureDirectory.getPath();
+
         //Get a URI representation
         Uri data = Uri.parse(pictureDirectoryPath);
 
@@ -120,15 +139,57 @@ public class Modele extends AppCompatActivity
         activity.startActivityForResult(photoPickerIntent, IMAGE_GALLERY_REQUEST);
     }
 
+
+    public static Bitmap modifyOrientation(Bitmap bitmap, String image_absolute_path) throws IOException {
+        ExifInterface ei = new ExifInterface(image_absolute_path);
+        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                return rotate(bitmap, 90);
+
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                return rotate(bitmap, 180);
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                return rotate(bitmap, 270);
+
+            case ExifInterface.ORIENTATION_FLIP_HORIZONTAL:
+                return flip(bitmap, true, false);
+
+            case ExifInterface.ORIENTATION_FLIP_VERTICAL:
+                return flip(bitmap, false, true);
+
+            default:
+                return bitmap;
+        }
+    }
+
+
+    public static Bitmap rotate(Bitmap bitmap, float degrees) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degrees);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+
+    public static Bitmap flip(Bitmap bitmap, boolean horizontal, boolean vertical) {
+        Matrix matrix = new Matrix();
+        matrix.preScale(horizontal ? -1 : 1, vertical ? -1 : 1);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+
     @Override
     public void onBackPressed() {
 
         if (manager.getBackStackEntryCount() < 2)
             finish();
-        
+
         else 
             manager.popBackStack();
     }
+
 
     @Override
     public void onFragmentInteraction(int position) {

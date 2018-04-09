@@ -150,13 +150,18 @@ public class Modele2 extends Fragment {
             @Override
             public void onClick(View view) {
 
+                // On enlève le focus des views pour avoir un bon screenshot.
+                imageLayout.requestFocus();
                 screenshot();
+
+                // On change de fragment.
                 Modele.changerFragment(Apercu.newInstance(3));
                 Modele.CURRENT_TAG = FragmentTags.APERCU;
             }
         });
 
 
+        // Si l'image a déjà été créée, on l'affiche (onBackPress).
         if(imageTwitter != null) {
             imageTwitter.setVisibility(View.VISIBLE);
             imageTwitter.setImageBitmap(bmChoosen);
@@ -169,6 +174,7 @@ public class Modele2 extends Fragment {
 
     private void screenshot(){
 
+        // On prend un screenshot du view.
         imageLayout.setDrawingCacheEnabled(true);
         Modele.bitmapScreenshot = Bitmap.createBitmap(imageLayout.getDrawingCache());
         imageLayout.setDrawingCacheEnabled(false);
@@ -177,6 +183,7 @@ public class Modele2 extends Fragment {
 
     public static void ajouterImage(Bitmap bm){
 
+        // On ajoute l'image au Twitter Memes
         bmChoosen = bm;
         imageTwitter.setImageBitmap(bm);
         imageTwitter.setVisibility(View.VISIBLE);
