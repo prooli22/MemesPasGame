@@ -17,15 +17,15 @@
         android:layout_height="wrap_content"
         android:text="Enregistrer l'aperçu"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="55dp"
         android:textSize="10pt" />
 
     <ImageView
         android:id="@+id/imageApercu"
         android:layout_width="wrap_content"
-        android:layout_height="340dp"
+        android:layout_height="325dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
         android:layout_marginHorizontal="20dp"/>
 
     <Button
@@ -55,11 +55,13 @@
         android:layout_marginBottom="10dp"
         android:layout_marginRight="20dp"
         android:text="Partager" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="90dp"
         android:progress="75"
        style="@android:style/Widget.ProgressBar.Horizontal" />
 

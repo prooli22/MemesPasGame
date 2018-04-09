@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import ca.umontreal.mpg.memepasgame.R;
@@ -65,12 +66,21 @@ public class Modele1 extends Fragment {
         // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_modele1, container, false);
 
-
-
         final ImageButton brain_meme = (ImageButton) view.findViewById(R.id.img_brain_meme);
         final ImageButton drake_meme = (ImageButton) view.findViewById(R.id.img_drake_meme);
         final ImageButton twitter_meme = (ImageButton) view.findViewById(R.id.img_twitter_meme);
         final ImageButton patrick_meme = (ImageButton) view.findViewById(R.id.img_patrick_meme);
+
+        final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        if(Modele.MEME_TAG == MemeTags.BRAIN)
+            brain_meme.setImageResource(R.drawable.brain_memec);
+        else if(Modele.MEME_TAG == MemeTags.DRAKE)
+            drake_meme.setImageResource(R.drawable.drakec);
+        else if(Modele.MEME_TAG == MemeTags.TWITTER)
+            twitter_meme.setImageResource(R.drawable.twitter_memec);
+        else if(Modele.MEME_TAG == MemeTags.PATRICK)
+            patrick_meme.setImageResource(R.drawable.patrick_memec);
 
         brain_meme.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +88,8 @@ public class Modele1 extends Fragment {
                 if(Modele.MEME_TAG == MemeTags.BRAIN){
                     Modele.MEME_TAG = null;
                     brain_meme.setImageResource(R.drawable.brain_meme);
+
+                    progressBar.setProgress(5);
                 }
 
                 else{
@@ -88,6 +100,8 @@ public class Modele1 extends Fragment {
                     Modele.MEME_TAG = MemeTags.BRAIN;
 
                     brain_meme.setImageResource(R.drawable.brain_memec);
+
+                    progressBar.setProgress(25);
                 }
             }
         });
@@ -98,6 +112,8 @@ public class Modele1 extends Fragment {
                 if(Modele.MEME_TAG == MemeTags.DRAKE){
                     Modele.MEME_TAG = null;
                     drake_meme.setImageResource(R.drawable.drake_meme);
+
+                    progressBar.setProgress(5);
                 }
 
                 else {
@@ -108,6 +124,8 @@ public class Modele1 extends Fragment {
                     Modele.MEME_TAG = MemeTags.DRAKE;
 
                     drake_meme.setImageResource(R.drawable.drakec);
+
+                    progressBar.setProgress(25);
                 }
             }
         });
@@ -118,6 +136,8 @@ public class Modele1 extends Fragment {
                 if(Modele.MEME_TAG == MemeTags.TWITTER){
                     Modele.MEME_TAG = null;
                     twitter_meme.setImageResource(R.drawable.twitter_meme);
+
+                    progressBar.setProgress(5);
                 }
 
                 else {
@@ -128,6 +148,8 @@ public class Modele1 extends Fragment {
                     Modele.MEME_TAG = MemeTags.TWITTER;
 
                     twitter_meme.setImageResource(R.drawable.twitter_memec);
+
+                    progressBar.setProgress(25);
                 }
             }
         });
@@ -138,6 +160,8 @@ public class Modele1 extends Fragment {
                 if(Modele.MEME_TAG == MemeTags.PATRICK){
                     Modele.MEME_TAG = null;
                     patrick_meme.setImageResource(R.drawable.patrick_meme);
+
+                    progressBar.setProgress(5);
                 }
 
 
@@ -149,6 +173,8 @@ public class Modele1 extends Fragment {
                     Modele.MEME_TAG = MemeTags.PATRICK;
 
                     patrick_meme.setImageResource(R.drawable.patrick_memec);
+
+                    progressBar.setProgress(25);
                 }
             }
         });

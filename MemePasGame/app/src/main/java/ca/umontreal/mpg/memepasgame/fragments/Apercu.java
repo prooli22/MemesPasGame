@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -45,6 +46,7 @@ public class Apercu extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private static Button bRetour;
+    private static ProgressBar progress;
 
     public Apercu() {
         // Required empty public constructor
@@ -106,9 +108,14 @@ public class Apercu extends Fragment {
             }
         });
 
+
+        progress = (ProgressBar) view.findViewById(R.id.progressBar);
+
         return view;
     }
 
+
+    // Permet de partager l'image créée.
     private void partagerImage (View view){
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -133,7 +140,13 @@ public class Apercu extends Fragment {
 
         shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(cachePath));
         startActivity(Intent.createChooser(shareIntent, "Share Image"));
+
+        if(progress.getProgress() == 75)
+            progress.setProgress(95);
+        else
+            progress.setProgress(100);
     }
+
 
     // Permet d'enregistrer l'image créée dans la galerie.
     private void enregistrerImage(){
@@ -152,35 +165,12 @@ public class Apercu extends Fragment {
             Log.e ("ERROR", e.getMessage());
         }
 
-        Toast.makeText(getContext(), "Enregistré", Toast.LENGTH_SHORT).show();
-        
-    }
+        Toast.makeText(getContext(), "Enregistré !", Toast.LENGTH_SHORT).show();
 
-
-    // Permet d'enregistrer l'image créée dans la galerie.
-    private void enregistrer(Bitmap bm, String fileName){
-
-//        String pathDossier = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
-//        File dossier = new File(pathDossier);
-//
-//        if(!dossier.exists())
-//            dossier.mkdir();
-//
-//        File file = new File(pathDossier, fileName);
-//
-//        try{
-//            FileOutputStream fOut = null;
-//            fOut = new FileOutputStream(file);
-//
-//            bm.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-//
-//            fOut.flush();
-//            fOut.close();
-//
-//            Toast.makeText(getContext(), "Enregistré", Toast.LENGTH_SHORT).show();
-//        }
-//        catch (FileNotFoundException e) { e.printStackTrace(); }
-//        catch (IOException e) { e.printStackTrace(); }
+        if(progress.getProgress() == 75)
+            progress.setProgress(95);
+        else
+            progress.setProgress(100);
     }
 
 

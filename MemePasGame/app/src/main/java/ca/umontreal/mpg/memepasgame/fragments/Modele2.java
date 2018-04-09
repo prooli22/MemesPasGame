@@ -49,7 +49,9 @@ public class Modele2 extends Fragment {
     // TODO: Rename and change types of parameters
     public int position = 2;
     private OnFragmentInteractionListener mListener;
+
     private RelativeLayout imageLayout;
+    private static ImageView imageModele;
     private static ImageView imageTwitter;
     private static Bitmap bmChoosen;
 
@@ -84,8 +86,7 @@ public class Modele2 extends Fragment {
 
         imageLayout = view.findViewById(R.id.imageLayout);
         imageTwitter = view.findViewById(R.id.imageTwitter);
-
-        ImageView imageModele = view.findViewById(R.id.imageModele);
+        imageModele = view.findViewById(R.id.imageModele);
 
         if(Modele.MEME_TAG == MemeTags.BRAIN) {
             imageModele.setImageResource(R.drawable.brain_meme);
@@ -161,8 +162,8 @@ public class Modele2 extends Fragment {
         });
 
 
-        // Si l'image a déjà été créée, on l'affiche (onBackPress).
-        if(imageTwitter != null) {
+        // Si l'image twitter a déjà été créée, on l'affiche (onBackPress).
+        if(bmChoosen != null) {
             imageTwitter.setVisibility(View.VISIBLE);
             imageTwitter.setImageBitmap(bmChoosen);
         }
