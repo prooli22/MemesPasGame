@@ -154,7 +154,7 @@ public class Apercu extends Fragment {
 
         try {
             OutputStream stream = getContext().getContentResolver().openOutputStream(path);
-            Modele.bitmapScreenshot.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            Modele.bitmapScreenshot.compress(Bitmap.CompressFormat.PNG, 100, stream);
         }
 
         catch (FileNotFoundException e) {
