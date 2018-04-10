@@ -37,7 +37,6 @@
             android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
             android:background="@android:color/white"
-            android:src="@drawable/twitter_template"
             android:visibility="gone"/>
 
         <ImageView
