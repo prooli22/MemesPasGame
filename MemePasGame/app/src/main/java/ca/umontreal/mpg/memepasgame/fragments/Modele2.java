@@ -1,17 +1,9 @@
 package ca.umontreal.mpg.memepasgame.fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import android.widget.Toast;
 
 import ca.umontreal.mpg.memepasgame.R;
 import ca.umontreal.mpg.memepasgame.activities.Modele;
@@ -114,6 +103,8 @@ public class Modele2 extends Fragment {
         else if(Modele.MEME_TAG == MemeTags.TWITTER) {
             imageModele.setImageResource(R.drawable.twitter_meme_template);
 
+            imageTwitter.setVisibility(View.VISIBLE);
+
             EditText textTwitter = (EditText) view.findViewById(R.id.textTwitter);
             textTwitter.setVisibility(View.VISIBLE);
 
@@ -137,11 +128,24 @@ public class Modele2 extends Fragment {
                 }
             });
 
+            ImageButton bOrientationM2 = (ImageButton) view.findViewById(R.id.bOrientationM2);
+            bOrientationM2.setVisibility(View.VISIBLE);
+            bOrientationM2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(bmChoosen == null)
+                        Toast.makeText(getContext(), "Vous devez sélectionner une image avant de changer l'orientation.", Toast.LENGTH_SHORT).show();
 
+                    else {
+                        bmChoosen = Modele.rotate(bmChoosen, 90);
+                        imageTwitter.setImageBitmap(bmChoosen);
+                    }
+                }
+            });
         }
 
         else if(Modele.MEME_TAG == MemeTags.PATRICK) {
-            imageModele.setImageResource(R.drawable.patrick_meme_template);
+            imageModele.setImageResource(R.drawable.patrick_meme);
 
             EditText textPatrick = (EditText) view.findViewById(R.id.textPatrick);
             textPatrick.setVisibility(View.VISIBLE);

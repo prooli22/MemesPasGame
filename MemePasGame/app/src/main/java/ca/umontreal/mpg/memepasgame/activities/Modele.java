@@ -47,11 +47,9 @@ public class Modele extends AppCompatActivity
 
     public static FragmentTags CURRENT_TAG = FragmentTags.M1;
     public static MemeTags MEME_TAG = null;
-
     public static Bitmap bitmapScreenshot;
 
     private static FragmentManager manager;
-
     private static Context context;
 
     @Override
@@ -78,6 +76,7 @@ public class Modele extends AppCompatActivity
     }
 
 
+    // Permet de retourner à l'activité principale.
     public static void retour(){
         context.startActivity(new Intent(context, MainActivity.class));
     }
@@ -91,16 +90,6 @@ public class Modele extends AppCompatActivity
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
             Modele2.ajouterImage(rotate(cameraImage, 90));
-
-//            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-//            Uri tempUri = getImageUri(getApplicationContext(), cameraImage);
-//
-//            //getRealPathFromURI(tempUri)
-//            try {
-//                Modele2.ajouterImage(modifyOrientation(cameraImage, tempUri.toString()));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
         }
 
         // Est-ce que c'est vraiment la gallerie que l'ont veut ouvrir ?
@@ -115,28 +104,12 @@ public class Modele extends AppCompatActivity
             try {
                 inputStream = getContentResolver().openInputStream(imageUri);
                 Bitmap imageGal = BitmapFactory.decodeStream(inputStream);
-
-                //modifyOrientation(imageGalChosen, imageUri.toString());
-                //imageChosen.setImageBitmap(imageGalChosen);
                 Modele2.ajouterImage(imageGal);
 
             } catch (FileNotFoundException e) { e.printStackTrace(); }
         }
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
-
-    public String getRealPathFromURI(Uri uri) {
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-        return cursor.getString(idx);
-    }
 
     // Permet d'accéder à la caméra de l'appareil et d'obtenir la photo prise.
     public static void cameraClick(Activity activity){
@@ -164,42 +137,10 @@ public class Modele extends AppCompatActivity
     }
 
 
-    public static Bitmap modifyOrientation(Bitmap bitmap, String image_absolute_path) throws IOException {
-        ExifInterface ei = new ExifInterface(image_absolute_path);
-        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-
-        switch (orientation) {
-            case ExifInterface.ORIENTATION_ROTATE_90:
-                return rotate(bitmap, -90);
-
-            case ExifInterface.ORIENTATION_ROTATE_180:
-                return rotate(bitmap, -180);
-
-            case ExifInterface.ORIENTATION_ROTATE_270:
-                return rotate(bitmap, -270);
-
-            case ExifInterface.ORIENTATION_FLIP_HORIZONTAL:
-                return flip(bitmap, true, false);
-
-            case ExifInterface.ORIENTATION_FLIP_VERTICAL:
-                return flip(bitmap, false, true);
-
-            default:
-                return bitmap;
-        }
-    }
-
-
+    // Permet de rotationner une image Bitmap.
     public static Bitmap rotate(Bitmap bitmap, float degrees) {
         Matrix matrix = new Matrix();
         matrix.postRotate(degrees);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-    }
-
-
-    public static Bitmap flip(Bitmap bitmap, boolean horizontal, boolean vertical) {
-        Matrix matrix = new Matrix();
-        matrix.preScale(horizontal ? -1 : 1, vertical ? -1 : 1);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 

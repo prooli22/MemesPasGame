@@ -74,13 +74,13 @@ public class Modele1 extends Fragment {
         final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         if(Modele.MEME_TAG == MemeTags.BRAIN)
-            brain_meme.setImageResource(R.drawable.brain_memec);
+            brain_meme.setImageResource(R.drawable.brain_meme_click);
         else if(Modele.MEME_TAG == MemeTags.DRAKE)
-            drake_meme.setImageResource(R.drawable.drakec);
+            drake_meme.setImageResource(R.drawable.drake_click);
         else if(Modele.MEME_TAG == MemeTags.TWITTER)
-            twitter_meme.setImageResource(R.drawable.twitter_memec);
+            twitter_meme.setImageResource(R.drawable.twitter_meme_click);
         else if(Modele.MEME_TAG == MemeTags.PATRICK)
-            patrick_meme.setImageResource(R.drawable.patrick_memec);
+            patrick_meme.setImageResource(R.drawable.patrick_meme_click);
 
         brain_meme.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +99,7 @@ public class Modele1 extends Fragment {
 
                     Modele.MEME_TAG = MemeTags.BRAIN;
 
-                    brain_meme.setImageResource(R.drawable.brain_memec);
+                    brain_meme.setImageResource(R.drawable.brain_meme_click);
 
                     progressBar.setProgress(25);
                 }
@@ -123,7 +123,7 @@ public class Modele1 extends Fragment {
 
                     Modele.MEME_TAG = MemeTags.DRAKE;
 
-                    drake_meme.setImageResource(R.drawable.drakec);
+                    drake_meme.setImageResource(R.drawable.drake_click);
 
                     progressBar.setProgress(25);
                 }
@@ -147,7 +147,7 @@ public class Modele1 extends Fragment {
 
                     Modele.MEME_TAG = MemeTags.TWITTER;
 
-                    twitter_meme.setImageResource(R.drawable.twitter_memec);
+                    twitter_meme.setImageResource(R.drawable.twitter_meme_click);
 
                     progressBar.setProgress(25);
                 }
@@ -172,7 +172,7 @@ public class Modele1 extends Fragment {
 
                     Modele.MEME_TAG = MemeTags.PATRICK;
 
-                    patrick_meme.setImageResource(R.drawable.patrick_memec);
+                    patrick_meme.setImageResource(R.drawable.patrick_meme_click);
 
                     progressBar.setProgress(25);
                 }

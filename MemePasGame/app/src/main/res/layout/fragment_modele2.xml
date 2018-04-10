@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ca.umontreal.mpg.memepasgame.fragments.Modele2"
-    >
+    tools:context="ca.umontreal.mpg.memepasgame.fragments.Modele2">
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,12 +37,13 @@
             android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
             android:background="@android:color/white"
+            android:src="@drawable/twitter_template"
             android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/imageModele"
             android:layout_width="wrap_content"
-            android:layout_height="330dp"
+            android:layout_height="310dp"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
@@ -51,12 +51,11 @@
         <EditText
             android:id="@+id/textTwitter"
             android:layout_width="310dp"
-            android:layout_height="wrap_content"
-            android:maxHeight="60dp"
+            android:layout_height="60dp"
             android:hint="Écrire ici ..."
             android:textSize="8pt"
             android:textColor="@color/colorBlack"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="45dp"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
             android:inputType="textVisiblePassword|textMultiLine"
@@ -65,8 +64,7 @@
         <EditText
             android:id="@+id/textPatrick"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:maxHeight="60dp"
+            android:layout_height="60dp"
             android:hint="Écrire ici ..."
             android:textSize="8pt"
             android:maxLength="100"
@@ -80,26 +78,25 @@
         <EditText
             android:id="@+id/textDrake1"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:maxHeight="130dp"
+            android:layout_height="120dp"
             android:hint="Écrire ici ..."
             android:textSize="8pt"
             android:textColor="@color/colorBlack"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="190dp"
             android:background="@android:color/transparent"
             android:inputType="textVisiblePassword|textMultiLine"
+            android:textAlignment="viewStart"
             android:visibility="gone"/>
 
         <EditText
             android:id="@+id/textDrake2"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:maxHeight="130dp"
+            android:layout_height="130dp"
             android:hint="Écrire ici ..."
             android:textSize="8pt"
             android:textColor="@color/colorBlack"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="160dp"
             android:layout_marginLeft="190dp"
             android:background="@android:color/transparent"
             android:inputType="textVisiblePassword|textMultiLine"
@@ -108,8 +105,7 @@
         <EditText
             android:id="@+id/textBrain1"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:maxHeight="70dp"
+            android:layout_height="70dp"
             android:hint="Écrire ici ..."
             android:textSize="6pt"
             android:textColor="@color/colorBlack"
@@ -122,12 +118,11 @@
         <EditText
             android:id="@+id/textBrain2"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:maxHeight="70dp"
+            android:layout_height="70dp"
             android:hint="Écrire ici ..."
             android:textSize="6pt"
             android:textColor="@color/colorBlack"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="80dp"
             android:layout_marginLeft="75dp"
             android:background="@android:color/transparent"
             android:inputType="textVisiblePassword|textMultiLine"
@@ -136,12 +131,11 @@
         <EditText
             android:id="@+id/textBrain3"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:maxHeight="70dp"
+            android:layout_height="70dp"
             android:hint="Écrire ici ..."
             android:textSize="6pt"
             android:textColor="@color/colorBlack"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="160dp"
             android:layout_marginLeft="75dp"
             android:background="@android:color/transparent"
             android:inputType="textVisiblePassword|textMultiLine"
@@ -150,12 +144,11 @@
         <EditText
             android:id="@+id/textBrain4"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:maxHeight="70dp"
+            android:layout_height="70dp"
             android:hint="Écrire ici ..."
             android:textSize="6pt"
             android:textColor="@color/colorBlack"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="235dp"
             android:layout_marginLeft="75dp"
             android:background="@android:color/transparent"
             android:inputType="textVisiblePassword|textMultiLine"
@@ -181,7 +174,18 @@
         android:src="@drawable/galerie"
         android:scaleType="centerInside"
         android:layout_gravity="bottom"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginBottom="12dp"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:id="@+id/bOrientationM2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/rotate"
+        android:scaleType="centerInside"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="160dp"
         android:layout_marginBottom="12dp"
         android:visibility="gone"/>
 
@@ -203,11 +207,7 @@
         android:progress="50"
         style="@android:style/Widget.ProgressBar.Horizontal" />
 
-    <Button
-        android:id="@+id/bOrientation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Orientaton" />
+
 
 
 </FrameLayout>
