@@ -124,15 +124,16 @@ public class Apercu extends Fragment {
         view.buildDrawingCache();
         Bitmap imageApercuBitMap = view.getDrawingCache();
 
-        imageApercuBitMap.compress(Bitmap.CompressFormat.PNG, 100, new ByteArrayOutputStream());
 
         File root = Environment.getExternalStorageDirectory();
-        File cachePath = new File(root.getAbsolutePath() + "/DCIM/Camera/image.jpg");
+        File cachePath = new File(root.getAbsolutePath() + "/DCIM/Camera/image.jpeg");
 
         try {
             cachePath.createNewFile();
             FileOutputStream fileOutputStream = new FileOutputStream(cachePath);
-            fileOutputStream.write(new ByteArrayOutputStream().toByteArray());
+            imageApercuBitMap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+            fileOutputStream.close();
+
         }
         catch (IOException e) {e.printStackTrace();}
 
@@ -152,8 +153,8 @@ public class Apercu extends Fragment {
         Uri path = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
 
         try {
-            OutputStream bytes = getContext().getContentResolver().openOutputStream(path);
-            Modele.bitmapScreenshot.compress(Bitmap.CompressFormat.PNG, 100, bytes);
+            OutputStream stream = getContext().getContentResolver().openOutputStream(path);
+            Modele.bitmapScreenshot.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         }
 
         catch (FileNotFoundException e) {
