@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -45,8 +46,10 @@ public class Apercu extends Fragment {
     public int position = 3;
     private OnFragmentInteractionListener mListener;
 
-    private static Button bRetour;
     private static ProgressBar progress;
+
+    private static boolean partager = true;
+    private static boolean enregistrer = true;
 
     public Apercu() {
         // Required empty public constructor
@@ -92,15 +95,10 @@ public class Apercu extends Fragment {
             @Override
             public void onClick(View view) {
                 enregistrerImage();
-
-                // On efface le bouton enregistrer, pour afficher retour à l'accueil.
-                view.setVisibility(View.GONE);
-                bRetour.setVisibility(View.VISIBLE);
-
             }
         });
 
-        bRetour = (Button) view.findViewById(R.id.bRetour);
+        ImageButton bRetour = (ImageButton) view.findViewById(R.id.bRetour);
         bRetour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +108,9 @@ public class Apercu extends Fragment {
 
 
         progress = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        partager = true;
+        enregistrer = true;
 
         return view;
     }
@@ -140,10 +141,12 @@ public class Apercu extends Fragment {
         shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(cachePath));
         startActivity(Intent.createChooser(shareIntent, "Share Image"));
 
-        if(progress.getProgress() == 75)
+        if(progress.getProgress() == 75 && partager)
             progress.setProgress(95);
-        else
+        else if(partager)
             progress.setProgress(100);
+
+        partager = false;
     }
 
 
@@ -163,10 +166,12 @@ public class Apercu extends Fragment {
 
         Toast.makeText(getContext(), "Enregistré !", Toast.LENGTH_SHORT).show();
 
-        if(progress.getProgress() == 75)
+        if(progress.getProgress() == 75 && enregistrer)
             progress.setProgress(95);
-        else
+        else if(enregistrer)
             progress.setProgress(100);
+
+        enregistrer = false;
     }
 
 

@@ -73,6 +73,9 @@ public class Modele1 extends Fragment {
 
         final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
+        if(Modele.MEME_TAG != null)
+            progressBar.setProgress(25);
+
         if(Modele.MEME_TAG == MemeTags.BRAIN)
             brain_meme.setImageResource(R.drawable.brain_meme_click);
         else if(Modele.MEME_TAG == MemeTags.DRAKE)

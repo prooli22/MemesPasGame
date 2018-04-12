@@ -34,18 +34,19 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|bottom"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:text="Enregistrer l'aperçu" />
+        android:layout_marginLeft="10dp"
+        android:text="Enregistrer"
+        android:drawableRight="@drawable/save"
+        android:drawablePadding="5dp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/bRetour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|bottom"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:text="Retour à l'accueil"
-        android:visibility="gone"/>
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/home"/>
 
     <Button
         android:id="@+id/bShare"
@@ -53,8 +54,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="10dp"
-        android:layout_marginRight="20dp"
-        android:text="Partager" />
+        android:layout_marginRight="70dp"
+        android:text="Partager"
+        android:drawableRight="@drawable/share"
+        android:drawablePadding="5dp"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

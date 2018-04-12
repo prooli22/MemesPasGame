@@ -195,7 +195,8 @@
         android:layout_gravity="right|bottom"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:text="Continuer"/>
+        android:text="Continuer"
+        android:drawableRight="@drawable/continuer"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
