@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="commencer">Let\'s begin!</string>
+    <string name="slogan">WIll you be willing to create your own meme?</string>
+    <string name="modele">Modele</string>
+    <string name="selectionnerModele">Choose a modele</string>
+    <string name="continuer">Continue</string>
+    <string name="modifierModele">Modify the modele</string>
+    <string name="apercu">Review</string>
+    <string name="enregistrerApercu">Save the review</string>
+    <string name="enregistrer">Save</string>
+    <string name="partager">Share</string>
+    <string name="ecrireIci">Write here...</string>
+</resources>

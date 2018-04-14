@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Meme Pas Game</string>
+    <string name="mpg" translatable="false">MPG</string>
+    <string name="droits" translatable="false">Copyright©2018 - MPG</string>
+    <string name="app_name" translatable="false">Meme Pas Game</string>
+    <string name="commencer">Commencer ici</string>
+    <string name="slogan">Serez-vous gamde de créer votre propre meme?</string>
+    <string name="modele">Modèle</string>
+    <string name="selectionnerModele">Sélectionner un modèle</string>
+    <string name="continuer">Continuer</string>
+    <string name="modifierModele">Modifier le modèle</string>
+    <string name="apercu">Aperçu</string>
+    <string name="enregistrerApercu">Enregistrer laperçu</string>
+    <string name="enregistrer">Enregistrer</string>
+    <string name="partager">Partager</string>
+    <string name="ecrireIci">Écrire ici…</string>
+    <string name="fr.en" translatable="false">Français/Anglais</string>
+
 </resources>

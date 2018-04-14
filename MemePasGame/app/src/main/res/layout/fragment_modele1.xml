@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:text="Modèle"
+        android:text="@string/modele"
         android:textSize="16pt" />
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="55dp"
-        android:text="Sélectionner un modèle"
+        android:text="@string/selectionnerModele"
         android:textSize="10pt" />
 
     <ImageButton
@@ -74,7 +74,7 @@
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="15dp"
         android:layout_marginRight="20dp"
-        android:text="Continuer"
+        android:text="@string/continuer"
         android:drawableRight="@drawable/continuer"/>
 
     <ProgressBar
