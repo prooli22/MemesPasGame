@@ -13,6 +13,6 @@
     <string name="ecrireIci">Write here...</string>
     <string name="veuillezSelect">You must select a model before continue</string>
     <string name="veuillezSelectPhoto">You must select a picture before rotating</string>
-    <string name="enregistré">Saved</string>
+    <string name="enregistré">Saved!</string>
     <string name="pasPermissions">You don\'t have the required permissions</string>
 </resources>
