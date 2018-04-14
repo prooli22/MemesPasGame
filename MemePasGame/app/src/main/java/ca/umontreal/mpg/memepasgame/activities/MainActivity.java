@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_PERMISSIONS = 20;
     private static Button bModele;
-    public Switch switchLang;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,35 +52,7 @@ public class MainActivity extends AppCompatActivity {
         demanderPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         demanderPermissions(Manifest.permission.CAMERA);
 
-        
 
-
-        switchLang = (Switch)findViewById(R.id.switchLang);
-
-        switchLang.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-
-                if(isChecked == true){
-                    //On veut mettre la langue à anglais
-                    Toast.makeText(getBaseContext(), "Anglais", Toast.LENGTH_SHORT).show();
-
-
-                    Locale locale = new Locale("en-rCA");
-                    Locale.setDefault(locale);
-                    Configuration config = getBaseContext().getResources().getConfiguration();
-                    config.locale = locale;
-                    getBaseContext().getResources().updateConfiguration(config,
-                            getBaseContext().getResources().getDisplayMetrics());
-
-
-                }else{
-                    Toast.makeText(getBaseContext(), "Français", Toast.LENGTH_SHORT).show();
-                }
-
-
-            }
-        });
     }
 
 
@@ -116,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     // permission denied
                     bModele.setActivated(false);
 
-                    Toast.makeText(MainActivity.this, "Vous n'avez pas les permissions nécessaires ...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.pasPermissions), Toast.LENGTH_SHORT).show();
                 }
                 return;
             }

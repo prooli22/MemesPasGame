@@ -164,7 +164,7 @@ public class Apercu extends Fragment {
             Log.e ("ERROR", e.getMessage());
         }
 
-        Toast.makeText(getContext(), "Enregistré !", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), getString(R.string.enregistré), Toast.LENGTH_SHORT).show();
 
         if(progress.getProgress() == 75 && enregistrer)
             progress.setProgress(95);

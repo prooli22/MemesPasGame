@@ -189,7 +189,9 @@ public class Modele1 extends Fragment {
             public void onClick(View view) {
                 // Valider qu'un choix à été fait.
                 if(Modele.MEME_TAG == null)
-                    Toast.makeText(getContext(), "Vous devez sélectionner un modèle avant de continuer", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Vous devez sélectionner un modèle avant de continuer", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.veuillezSelect), Toast.LENGTH_SHORT).show();
+
 
                 else {
                     Modele.changerFragment(Modele2.newInstance(2));

@@ -134,7 +134,7 @@ public class Modele2 extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if(bmChoosen == null)
-                        Toast.makeText(getContext(), "Vous devez sélectionner une image avant de changer l'orientation.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.veuillezSelectPhoto), Toast.LENGTH_SHORT).show();
 
                     else {
                         bmChoosen = Modele.rotate(bmChoosen, 90);

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="commencer">Let\'s begin!</string>
-    <string name="slogan">WIll you be willing to create your own meme?</string>
-    <string name="modele">Modele</string>
-    <string name="selectionnerModele">Choose a modele</string>
+    <string name="slogan">Would you be \"game\" to create your own \"meme\"?</string>
+    <string name="modele">Model</string>
+    <string name="selectionnerModele">Choose a model</string>
     <string name="continuer">Continue</string>
-    <string name="modifierModele">Modify the modele</string>
-    <string name="apercu">Review</string>
-    <string name="enregistrerApercu">Save the review</string>
+    <string name="modifierModele">Modify the model</string>
+    <string name="apercu">Preview</string>
+    <string name="enregistrerApercu">Save the preview</string>
     <string name="enregistrer">Save</string>
     <string name="partager">Share</string>
     <string name="ecrireIci">Write here...</string>
+    <string name="veuillezSelect">You must select a model before continue</string>
+    <string name="veuillezSelectPhoto">You must select a picture before rotating</string>
+    <string name="enregistré">Saved</string>
+    <string name="pasPermissions">You don\'t have the required permissions</string>
 </resources>
